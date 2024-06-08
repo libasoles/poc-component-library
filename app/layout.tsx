@@ -7,7 +7,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <html lang="en">
       <body>
         <Providers>
-          <main className="m-16">{children}</main>
+          <main className="w-full m-16 max-w-screen-md mx-auto">
+            {children}
+          </main>
         </Providers>
       </body>
     </html>

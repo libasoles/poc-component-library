@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { useState } from "react";
 import { Patient } from "types/Patient";
-import Avatar from "./Avatar";
+import Avatar from "../generic/Avatar";
 
 type Props = {
   patient: Patient;
@@ -15,7 +15,7 @@ const PatientCard = ({ patient }: Props) => {
   const startDate = dayjs(patient.createdAt).format(dateFormat);
 
   return (
-    <li className="mt-6 p-4 bg-zinc-800 rounded-lg shadow-lg">
+    <li className="mt-6 p-4 bg-zinc-900 rounded-lg shadow-lg">
       <div className="flex flex-col">
         <div className="flex flex-row gap-4 items-center">
           <Avatar patient={patient} />

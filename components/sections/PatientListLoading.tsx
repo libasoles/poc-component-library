@@ -1,9 +1,9 @@
 const PatientCardSkeleton = () => {
   return (
     <li className="mt-6 p-4 bg-zinc-800 rounded-lg shadow-lg">
-      <div className="animate-pulse h-44">
+      <div className="animate-pulse h-34">
         <div className=" flex space-x-4">
-          <div className="rounded-full bg-slate-700 h-20 w-20"></div>
+          <div className="rounded-full bg-slate-700 h-12 w-12"></div>
 
           <div className="flex flex-col flex-1 space-y-4  justify-center">
             <div className="h-2 bg-slate-700 rounded w-40"></div>

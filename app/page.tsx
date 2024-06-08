@@ -1,4 +1,6 @@
-import PatientList from "@/components/PatientList";
+import Column from "@/components/generic/Column";
+import NewPatientButton from "@/components/sections/NewPatientButton";
+import PatientList from "@/components/sections/PatientList";
 import {
   dehydrate,
   HydrationBoundary,
@@ -23,7 +25,10 @@ export default async function PatientsPage() {
       <h1 className="text-3xl">Patients</h1>
 
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <PatientList />
+        <Column>
+          <NewPatientButton />
+          <PatientList />
+        </Column>
       </HydrationBoundary>
     </>
   );

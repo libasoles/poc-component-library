@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Patient } from "types/Patient";
 
-const imageSize = 80;
+const imageSize = 50;
 
 type Props = {
   patient: Patient;
