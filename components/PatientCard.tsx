@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import Image from "next/image";
 import { useState } from "react";
 import { Patient } from "types/Patient";
@@ -8,8 +9,12 @@ type Props = {
 
 const imageSize = 128;
 
+const dateFormat = "MMMM D, YYYY";
+
 const PatientCard = ({ patient }: Props) => {
   const [showMore, setShowMore] = useState(false);
+
+  const startDate = dayjs(patient.createdAt).format(dateFormat);
 
   return (
     <li key={patient.id} className="mt-6 p-4 bg-zinc-800 rounded-lg shadow-lg">
@@ -22,7 +27,13 @@ const PatientCard = ({ patient }: Props) => {
             width={imageSize}
             height={imageSize}
           />
-          <h3 className="font-bold text-xl mb-2">{patient.name}</h3>
+          <div>
+            <h3 className="font-bold text-xl mb-1">{patient.name}</h3>
+            <p>
+              <span className="text-gray-400">Registration date:</span>{" "}
+              {startDate}
+            </p>
+          </div>
         </div>
         <p
           className={`text-gray-300 text-base mt-4 ${
