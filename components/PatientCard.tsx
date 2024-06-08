@@ -1,13 +1,11 @@
 import dayjs from "dayjs";
-import Image from "next/image";
 import { useState } from "react";
 import { Patient } from "types/Patient";
+import Avatar from "./Avatar";
 
 type Props = {
   patient: Patient;
 };
-
-const imageSize = 128;
 
 const dateFormat = "MMMM D, YYYY";
 
@@ -17,16 +15,11 @@ const PatientCard = ({ patient }: Props) => {
   const startDate = dayjs(patient.createdAt).format(dateFormat);
 
   return (
-    <li key={patient.id} className="mt-6 p-4 bg-zinc-800 rounded-lg shadow-lg">
+    <li className="mt-6 p-4 bg-zinc-800 rounded-lg shadow-lg">
       <div className="flex flex-col">
         <div className="flex flex-row gap-4 items-center">
-          <Image
-            className="rounded-full shadow-lg"
-            src={patient.avatar}
-            alt={`Avatar for ${patient.name}`}
-            width={imageSize}
-            height={imageSize}
-          />
+          <Avatar patient={patient} />
+
           <div>
             <h3 className="font-bold text-xl mb-1">{patient.name}</h3>
             <p>
