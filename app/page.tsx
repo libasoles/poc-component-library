@@ -1,5 +1,4 @@
 import PatientList from "@/components/PatientList";
-import "@/styles/global.css";
 import {
   dehydrate,
   HydrationBoundary,
@@ -20,11 +19,12 @@ export default async function PatientsPage() {
   });
 
   return (
-    <main>
-      <h1>Patients</h1>
+    <>
+      <h1 className="text-3xl">Patients</h1>
+
       <HydrationBoundary state={dehydrate(queryClient)}>
         <PatientList />
       </HydrationBoundary>
-    </main>
+    </>
   );
 }

@@ -9,7 +9,7 @@ const PatientList = () => {
   if (isLoading) return <h2>Loading...</h2>;
 
   return (
-    <ul>
+    <ul className="w-full">
       {patients?.map((patient) => (
         <PatientCard patient={patient} key={patient.id} />
       ))}
