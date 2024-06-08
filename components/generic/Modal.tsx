@@ -3,8 +3,9 @@
 import { ComponentProps } from "react";
 import { createPortal } from "react-dom";
 import { twMerge } from "tailwind-merge";
+import { CrossIcon } from "../icons";
 import Column from "./Column";
-import IconButton, { CrossIcon } from "./IconButton";
+import IconButton from "./IconButton";
 import Row from "./Row";
 
 type Props = {

@@ -2,6 +2,10 @@ import dayjs from "dayjs";
 import { useState } from "react";
 import { Patient } from "types/Patient";
 import Avatar from "../generic/Avatar";
+import Button from "../generic/Button";
+import Column from "../generic/Column";
+import Row from "../generic/Row";
+import { DeleteIcon } from "../icons";
 
 type Props = {
   patient: Patient;
@@ -16,18 +20,27 @@ const PatientCard = ({ patient }: Props) => {
 
   return (
     <li className="mt-6 p-4 bg-zinc-900 rounded-lg shadow-lg">
-      <div className="flex flex-col">
-        <div className="flex flex-row gap-4 items-center">
-          <Avatar patient={patient} />
+      <Column>
+        <Row className="justify-between items-start">
+          <Row className="gap-4 items-center">
+            <Avatar patient={patient} />
 
-          <div>
-            <h3 className="font-bold text-xl mb-1">{patient.name}</h3>
-            <p>
-              <span className="text-gray-400">Registration date:</span>{" "}
-              {startDate}
-            </p>
-          </div>
-        </div>
+            <div>
+              <h3 className="font-bold text-xl mb-1">{patient.name}</h3>
+              <p>
+                <span className="text-gray-400">Registration date:</span>{" "}
+                {startDate}
+              </p>
+            </div>
+          </Row>
+
+          <Row className="justify-end gap-2">
+            <Button variant="text">Edit</Button>
+            <Button variant="text" color="red" icon={<DeleteIcon />}>
+              Delete
+            </Button>
+          </Row>
+        </Row>
         <p
           className={`text-gray-300 text-base mt-4 ${
             showMore ? "" : "truncate"
@@ -35,7 +48,7 @@ const PatientCard = ({ patient }: Props) => {
         >
           {patient.description}
         </p>
-      </div>
+      </Column>
 
       {showMore && (
         <div className="mt-4">
@@ -45,9 +58,15 @@ const PatientCard = ({ patient }: Props) => {
         </div>
       )}
 
-      <button className="mt-4" onClick={() => setShowMore((prev) => !prev)}>
-        {showMore ? "Show less" : "Show more"}
-      </button>
+      <Row className="justify-end gap-2">
+        <Button
+          variant="text"
+          className="mt-4 lowercase"
+          onClick={() => setShowMore((prev) => !prev)}
+        >
+          {showMore ? "show less" : "...see more"}
+        </Button>
+      </Row>
     </li>
   );
 };
