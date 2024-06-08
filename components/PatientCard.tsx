@@ -16,7 +16,7 @@ const PatientCard = ({ patient }: Props) => {
       <div className="flex flex-col">
         <div className="flex flex-row gap-4 items-center">
           <Image
-            className="rounded-full"
+            className="rounded-full shadow-lg"
             src={patient.avatar}
             alt={`Avatar for ${patient.name}`}
             width={imageSize}
@@ -24,7 +24,13 @@ const PatientCard = ({ patient }: Props) => {
           />
           <h3 className="font-bold text-xl mb-2">{patient.name}</h3>
         </div>
-        <p className="text-gray-300 text-base mt-4">{patient.description}</p>
+        <p
+          className={`text-gray-300 text-base mt-4 ${
+            showMore ? "" : "truncate"
+          }`}
+        >
+          {patient.description}
+        </p>
       </div>
 
       {showMore && (
