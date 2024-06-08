@@ -1,6 +1,7 @@
 "use client";
 
 import { useFetchPatients } from "api/useFetchPatients";
+import PatientCard from "./PatientCard";
 
 const PatientList = () => {
   const { data: patients, isLoading, isError } = useFetchPatients();
@@ -10,10 +11,7 @@ const PatientList = () => {
   return (
     <ul>
       {patients?.map((patient) => (
-        <li key={patient.id}>
-          <h3>{patient.name}</h3>
-          <p>{patient.description}</p>
-        </li>
+        <PatientCard patient={patient} key={patient.id} />
       ))}
     </ul>
   );
