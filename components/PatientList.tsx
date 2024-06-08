@@ -1,15 +1,15 @@
-import { Patient } from "types/Patient";
+"use client";
 
-const PatientList = async () => {
-  const response = await fetch(
-    "https://63bedcf7f5cfc0949b634fc8.mockapi.io/users"
-  );
+import { useFetchPatients } from "api/useFetchPatients";
 
-  const patients: Patient[] = await response.json();
+const PatientList = () => {
+  const { data: patients, isLoading, isError } = useFetchPatients();
+
+  if (isLoading) return <h2>Loading...</h2>;
 
   return (
     <ul>
-      {patients.map((patient) => (
+      {patients?.map((patient) => (
         <li key={patient.id}>
           <h3>{patient.name}</h3>
           <p>{patient.description}</p>
