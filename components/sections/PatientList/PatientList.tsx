@@ -23,7 +23,10 @@ const PatienList = ({
 
   if (isError || !patients)
     return (
-      <Message message="We couldn't retrieve the list of patients. Either create one, or try loading the page again in a few seconds." />
+      <Message
+        variant="error"
+        message="We couldn't retrieve the list of patients. Either create one, or try loading the page again in a few seconds."
+      />
     );
 
   if (patients.length === 0) return <Message message="No patients found" />;

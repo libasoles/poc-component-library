@@ -36,6 +36,7 @@ const NewPatientDialog = ({ isOpen, closeDialog }: Props) => {
         onClose={handleClose}
         onConfirm={handleConfirm}
         title="Create patient"
+        fullscreen
       >
         <FormProvider {...form}>
           <NewPatienForm ref={formRef} handleSubmit={handleSubmit} />

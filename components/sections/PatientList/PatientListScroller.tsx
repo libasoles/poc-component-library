@@ -28,7 +28,7 @@ const PatientListScroller = () => {
       ref={listRef}
       style={{ height: "88vh", overflow: "auto" }}
       data-testid="virtual-list"
-      className="mt-8 h-screen"
+      className="mt-2 h-screen"
     >
       <div
         style={{

@@ -9,7 +9,9 @@ module.exports = {
       ...colors,
       gray: {
         ...colors.gray,
+        700: "#3c4044",
         800: "#2f2f2f",
+        900: "#222222",
       },
       slate: {
         ...colors.slate,

@@ -1,8 +1,8 @@
 "use client";
 
+import ActionBar from "../ActionBar";
 import Button from "../Button";
 import Column from "../layout/Column";
-import Row from "../layout/Row";
 import Modal, { ModalProps } from "./Modal";
 
 type Props = {
@@ -15,14 +15,14 @@ const Dialog = ({ onConfirm, children, ...props }: Props) => {
       <Column className="justify-between h-full">
         {children}
 
-        <Row className="justify-end gap-8 sm:gap-2">
+        <ActionBar className="pb-0">
           <Button onClick={props.onClose} variant="text">
             Cancel
           </Button>
           <Button onClick={onConfirm} variant="text">
             Ok
           </Button>
-        </Row>
+        </ActionBar>
       </Column>
     </Modal>
   );

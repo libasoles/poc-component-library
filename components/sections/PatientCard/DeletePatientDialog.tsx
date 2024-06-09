@@ -33,10 +33,9 @@ const DeletePatientDialog = ({ patient, isOpen, closeDialog }: Props) => {
         onClose={handleClose}
         onConfirm={handleSubmit}
         title="Delete patient"
-        className="h-fit mx-8"
       >
         <Column className="my-8 h-full justify-center">
-          <p className="text-lg">
+          <p className="text-md">
             {
               "This action can't be undone. Are you sure you want to delete this patient?"
             }

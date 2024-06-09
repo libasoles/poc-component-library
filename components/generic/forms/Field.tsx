@@ -21,7 +21,11 @@ const Field = (
     "focus:outline-none focus:shadow-outline focus:border-blue-400 focus:placeholder-transparent";
 
   const fieldClassName = twMerge(
-    `shadow appearance-none border ${border} rounded w-full py-2 px-3 text-gray-900 caret-gray-900 mb-1 ${focus}`,
+    `shadow appearance-none rounded 
+    border ${border} w-full  
+    text-gray-300 caret-gray-300 bg-gray-900
+    py-2 px-3 mb-1 
+    ${focus}`,
     className
   );
 

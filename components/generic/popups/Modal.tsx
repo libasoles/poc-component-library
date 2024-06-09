@@ -11,6 +11,7 @@ import Row from "../layout/Row";
 export type ModalProps = {
   title?: string;
   isOpen: boolean;
+  fullscreen?: boolean;
   onClose: () => void;
 } & ComponentProps<"div">;
 
@@ -18,6 +19,7 @@ const Modal = ({
   title,
   isOpen = false,
   onClose,
+  fullscreen = false,
   className = "",
   children,
   ...props
@@ -29,11 +31,26 @@ const Modal = ({
   }
 
   const content = (
-    <Column>
+    <Column
+      className={twMerge(
+        `px-4 py-4 m-0
+        min-h-40 min-w-96 
+        bg-slate-800 text-neutral-200
+        rounded-lg shadow-lg
+        ${
+          fullscreen
+            ? "w-full h-full sm:h-fit"
+            : "w-fit h-fit sm:h-fit sm:w-fit"
+        }  
+        transition-all
+        b-0`,
+        className
+      )}
+    >
       <Row>
         <h2 className="text-2xl font-semibold">{title}</h2>
-        <IconButton className="sm-hidden" onClick={onClose}>
-          <CrossIcon />
+        <IconButton className="sm:hidden" onClick={onClose}>
+          <CrossIcon className="text-gray-500" />
         </IconButton>
       </Row>
 
@@ -41,9 +58,13 @@ const Modal = ({
     </Column>
   );
 
-  const overlay = (
+  const dialog = (
     <div
-      className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-40"
+      className={`z-40 fixed 
+      top-0 left-0 w-full h-full 
+      bg-black bg-opacity-50 
+      flex items-center justify-center
+      `}
       onClick={(event) => {
         console.log(event, event.target, event.currentTarget);
         if (event.target === event.currentTarget) {
@@ -54,25 +75,19 @@ const Modal = ({
     >
       <dialog
         open
-        className={twMerge(
-          `z-50 relative
-          px-6 py-4 m-0
-          min-h-40 min-w-96 
-          justify-between 
-          bg-slate-800 text-neutral-200
+        className={`z-50 relative
           rounded-lg shadow-lg
-          w-full h-full sm:h-fit sm:w-fit 
+          w-fit ${fullscreen ? "h-full mx-0" : "h-fit mx-4"} sm:h-fit
           transition-all
-          b-0`,
-          className
-        )}
+          bg-transparent
+          b-0`}
       >
         {content}
       </dialog>
     </div>
   );
 
-  return <>{createPortal(overlay, document.body)}</>;
+  return <>{createPortal(dialog, document.body)}</>;
 };
 
 export default Modal;
