@@ -2,11 +2,11 @@ import ActionBar from "@/components/generic/ActionBar";
 import Button from "@/components/generic/Button";
 import Column from "@/components/generic/layout/Column";
 import Row from "@/components/generic/layout/Row";
-import EditIcon from "@/components/icons/EditIcon";
 import dayjs from "dayjs";
 import { useState } from "react";
 import { Patient } from "types/Patient";
 import DeletePatientButton from "./DeletePatientButton";
+import EditPatientButton from "./EditPatientButton";
 
 type Props = {
   patient: Patient;
@@ -38,7 +38,7 @@ const PatientCard = ({ patient }: Props) => {
 
             <Row className="justify-between gap-2">
               <p
-                className={`text-gray-300 text-base mt-4 ${
+                className={`text-neutral-300 text-base mt-4 ${
                   showMore ? "" : "truncate"
                 }`}
               >
@@ -67,9 +67,7 @@ const PatientCard = ({ patient }: Props) => {
         </Column>
 
         <ActionBar>
-          <Button variant="text" icon={<EditIcon />}>
-            Edit
-          </Button>
+          <EditPatientButton patient={patient} />
           <DeletePatientButton patient={patient} />
         </ActionBar>
       </Column>

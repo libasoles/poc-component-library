@@ -36,11 +36,11 @@ const Modal = ({
         `px-4 py-4 m-0
         min-h-40 min-w-96 
         bg-slate-800 text-neutral-200
-        rounded-lg shadow-lg
+        shadow-lg
         ${
           fullscreen
             ? "w-full h-full sm:h-fit"
-            : "w-fit h-fit sm:h-fit sm:w-fit"
+            : "w-fit h-fit sm:h-fit sm:w-fit rounded-lg"
         }  
         transition-all
         b-0`,

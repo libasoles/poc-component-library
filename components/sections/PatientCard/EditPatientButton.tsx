@@ -2,15 +2,15 @@
 
 import Button from "@/components/generic/Button";
 import { useDialog } from "@/components/generic/popups/useDialog";
-import { DeleteIcon } from "@/components/icons";
+import EditIcon from "@/components/icons/EditIcon";
 import { Patient } from "types/Patient";
-import DeletePatientDialog from "./DeletePatientDialog";
+import EditPatientDialog from "./EditPatientDialog";
 
 type Props = {
   patient: Patient;
 };
 
-const DeletePatientButton = ({ patient }: Props) => {
+const EditPatientButton = ({ patient }: Props) => {
   const { isOpen, openDialog, closeDialog } = useDialog();
 
   return (
@@ -18,13 +18,13 @@ const DeletePatientButton = ({ patient }: Props) => {
       <Button
         variant="text"
         color="neutral"
-        icon={<DeleteIcon />}
+        icon={<EditIcon />}
         onClick={openDialog}
       >
-        Delete
+        Edit
       </Button>
 
-      <DeletePatientDialog
+      <EditPatientDialog
         patient={patient}
         isOpen={isOpen}
         closeDialog={closeDialog}
@@ -33,4 +33,4 @@ const DeletePatientButton = ({ patient }: Props) => {
   );
 };
 
-export default DeletePatientButton;
+export default EditPatientButton;

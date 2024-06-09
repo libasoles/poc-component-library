@@ -7,10 +7,7 @@ type Props = {
 
 const CrossIcon = ({ size = 6, className }: Props) => (
   <svg
-    className={twMerge(
-      `w-${size} h-${size} text-slate-300 hover:text-slate-100`,
-      className
-    )}
+    className={twMerge(`w-${size} h-${size}`, className)}
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"

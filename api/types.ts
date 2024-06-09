@@ -10,4 +10,10 @@ namespace DTO {
       description: string;
     };
   }
+  export interface EditablePatient {
+    id?: string;
+    name: string;
+    description: string;
+    website: string;
+  }
 }

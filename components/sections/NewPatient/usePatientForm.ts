@@ -1,32 +1,34 @@
+import { MutationFunction } from "@tanstack/react-query";
 import { useCreatePatient } from "api/useCreatePatient";
+import { UpdatePatientParams, useUpdatePatient } from "api/useUpdatePatient";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
 
-type FormValues = {
-  name: string;
-  website: string;
-  description: string;
-};
-
-const defaultValues: FormValues = {
+const defaultValues: DTO.EditablePatient = {
   name: "",
   website: "",
   description: "",
 };
 
 type usePatientForm = {
+  patientId?: string;
+  initialValues: DTO.EditablePatient;
   onSuccess: () => void;
 };
 
 export const usePatientForm = ({
+  patientId,
+  initialValues = defaultValues,
   onSuccess: handleSuccess,
 }: usePatientForm) => {
   const formRef = useRef<HTMLFormElement>(null);
-  const form = useForm<FormValues>({
-    defaultValues,
+  const form = useForm<DTO.EditablePatient>({
+    defaultValues: initialValues,
   });
 
-  const mutation = useCreatePatient({
+  const useMutation = patientId ? useUpdatePatient : useCreatePatient;
+
+  const mutation = useMutation({
     onSuccess: () => {
       handleSuccess();
       resetState();
@@ -34,11 +36,19 @@ export const usePatientForm = ({
   });
 
   const handleSubmit = form.handleSubmit((values) => {
-    const newPatient = {
+    const patientData = {
       ...values,
-    };
+    } as DTO.EditablePatient;
 
-    mutation.mutate(newPatient as DTO.Patient);
+    if (patientId) {
+      const mutate = mutation.mutate as MutationFunction<UpdatePatientParams>;
+
+      mutate({ patientData, patientId });
+    } else {
+      const mutate = mutation.mutate as MutationFunction<DTO.EditablePatient>;
+
+      mutate(patientData);
+    }
   });
 
   function resetState() {

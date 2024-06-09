@@ -3,12 +3,16 @@ import axios from "axios";
 import config from "./config";
 import { PATIENTS } from "./useFetchPatients";
 
-async function createPatient(patient: DTO.Patient) {
+async function createPatient(patient: DTO.EditablePatient) {
   return await axios.post(`${config.api.baseUrl}/users`, patient);
 }
 
 type useCreatePatientProps = {
   onSuccess: () => void;
+};
+
+export type CreateMutationFn = {
+  patientData: DTO.EditablePatient;
 };
 
 export const useCreatePatient = ({
@@ -18,14 +22,14 @@ export const useCreatePatient = ({
 
   return useMutation({
     mutationFn: createPatient,
-    onMutate: async (patient: DTO.Patient) => {
+    onMutate: async (patient: DTO.EditablePatient) => {
       await queryClient.cancelQueries({ queryKey: [PATIENTS] });
       const previouspatients = queryClient.getQueryData([PATIENTS]);
 
       const randomId = Math.floor(Math.random() * 1000);
 
       // Optimistically update the cache
-      queryClient.setQueryData([PATIENTS], (old: DTO.Patient[]) => [
+      queryClient.setQueryData([PATIENTS], (old: DTO.EditablePatient[]) => [
         { ...patient, id: randomId },
         ...old,
       ]);

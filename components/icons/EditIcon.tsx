@@ -7,10 +7,7 @@ type Props = {
 
 const EditIcon = ({ size = 6, className }: Props) => (
   <svg
-    className={twMerge(
-      `w-${size} h-${size} text-slate-300 hover:text-slate-100`,
-      className
-    )}
+    className={twMerge(`w-${size} h-${size} `, className)}
     fill="currentColor"
     stroke="currentColor"
     focusable="false"

@@ -21,12 +21,12 @@ const Button = ({
   const variantStyle =
     variant === "outlined"
       ? `border-2 border-${color}-500 hover:border-${color}-300 text-${color}-200 rounded-lg px-4 py-1`
-      : `hover:bg-zinc-700 text-${color}-400 rounded-sm px-2 py-1`;
+      : `hover:bg-zinc-700 text-${color}-400 hover:text-${color}-300 rounded-sm px-2 py-1`;
 
   const modifiedIcon = icon
     ? cloneElement(icon, {
         size: 4,
-        className: twMerge(icon.props.className, `text-${color}-400`),
+        className: twMerge(icon.props.className),
       })
     : null;
 
