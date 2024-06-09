@@ -8,7 +8,7 @@ import IconButton from "../IconButton";
 import Column from "../layout/Column";
 import Row from "../layout/Row";
 
-type Props = {
+export type ModalProps = {
   title?: string;
   isOpen: boolean;
   onClose: () => void;
@@ -21,7 +21,7 @@ const Modal = ({
   className = "",
   children,
   ...props
-}: Props) => {
+}: ModalProps) => {
   if (!isOpen) return <></>;
 
   return createPortal(

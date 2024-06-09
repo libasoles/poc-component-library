@@ -1,18 +1,15 @@
 "use client";
 
-import { ComponentProps } from "react";
 import Button from "../Button";
 import Column from "../layout/Column";
 import Row from "../layout/Row";
-import Modal from "./Modal";
+import Modal, { ModalProps } from "./Modal";
 
 type Props = {
-  title?: string;
-  isOpen: boolean;
-  onClose: () => void;
-} & ComponentProps<"div">;
+  onConfirm: () => void;
+} & ModalProps;
 
-const Dialog = ({ children, ...props }: Props) => {
+const Dialog = ({ onConfirm, children, ...props }: Props) => {
   return (
     <Modal {...props}>
       <Column className="justify-between h-full">
@@ -22,7 +19,7 @@ const Dialog = ({ children, ...props }: Props) => {
           <Button onClick={props.onClose} variant="text">
             Cancel
           </Button>
-          <Button onClick={props.onClose} variant="text">
+          <Button onClick={onConfirm} variant="text">
             Ok
           </Button>
         </Row>

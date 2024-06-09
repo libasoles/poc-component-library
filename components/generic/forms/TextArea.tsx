@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { ComponentProps, forwardRef } from "react";
 import Field from "./Field";
 
 type Props = {
@@ -7,10 +7,12 @@ type Props = {
   name: string;
 } & ComponentProps<"input">;
 
-const TextArea = (props: Props) => {
+const TextArea = (props: Props, ref: Ref<HTMLTextAreaElement>) => {
   return (
-    <Field {...props}>{(inputProps) => <textarea {...inputProps} />}</Field>
+    <Field {...props}>
+      {(fieldProps) => <textarea {...fieldProps} ref={ref} />}
+    </Field>
   );
 };
 
-export default TextArea;
+export default forwardRef(TextArea);

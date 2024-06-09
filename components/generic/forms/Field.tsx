@@ -1,4 +1,4 @@
-import { ComponentProps, ReactElement } from "react";
+import { ComponentProps, forwardRef, ReactElement, Ref } from "react";
 import { twMerge } from "tailwind-merge";
 import Label from "./Label";
 
@@ -6,34 +6,38 @@ type Props = {
   label?: string;
   error?: string;
   name: string;
-  children: (props: ComponentProps<"input" | "textarea">) => ReactElement;
+  children: (
+    props: ComponentProps<"input" | "textarea">,
+    ref: Ref<HTMLElement>
+  ) => ReactElement;
 } & Omit<ComponentProps<"input">, "children">;
 
-const Field = ({
-  id,
-  name,
-  label = "",
-  error = "",
-  className = "",
-  children,
-  ...props
-}: Props): ReactElement => {
+const Field = (
+  { label = "", error = "", className = "", children, ...props }: Props,
+  ref: Ref<HTMLElement>
+): ReactElement => {
   const border = error ? "border-red-500" : "border-gray-500";
   const focus =
     "focus:outline-none focus:shadow-outline focus:border-blue-400 focus:placeholder-transparent";
 
   const fieldClassName = twMerge(
-    `shadow appearance-none border ${border} rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight ${focus}`,
+    `shadow appearance-none border ${border} rounded w-full py-2 px-3 text-gray-900 caret-gray-900 mb-1 ${focus}`,
     className
   );
 
+  const field = children({ ...props, className: fieldClassName }, ref);
+
+  const { id, name } = props;
+
   return (
-    <div className="mb-6">
+    <div className="mt-1 mb-2">
       <Label htmlFor={id ? id : name}>{label}</Label>
-      {children({ ...props, className: fieldClassName })}
-      {error && <p className="text-red-500 text-xs italic">{error}</p>}
+
+      {field}
+
+      <p className="text-red-500 text-xs italic h-2">{error || ""}</p>
     </div>
   );
 };
 
-export default Field;
+export default forwardRef(Field);
