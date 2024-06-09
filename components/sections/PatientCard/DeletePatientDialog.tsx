@@ -1,3 +1,4 @@
+import Column from "@/components/generic/layout/Column";
 import Dialog from "@/components/generic/popups/Dialog";
 import { useDeletePatient } from "api/useDeletePatient";
 import { Patient } from "types/Patient";
@@ -32,14 +33,15 @@ const DeletePatientDialog = ({ patient, isOpen, closeDialog }: Props) => {
         onClose={handleClose}
         onConfirm={handleSubmit}
         title="Delete patient"
+        className="h-fit mx-8"
       >
-        <div className="mt-16 mx-4">
+        <Column className="my-8 h-full justify-center">
           <p className="text-lg">
             {
               "This action can't be undone. Are you sure you want to delete this patient?"
             }
           </p>
-        </div>
+        </Column>
 
         {errorSubmitting && (
           <Toast message="Error deleting the patient" variant="error" />
