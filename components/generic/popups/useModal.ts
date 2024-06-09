@@ -13,3 +13,9 @@ export const useModal = () => {
 
   return { isOpen, openModal, closeModal };
 };
+
+export const useDialog = () => {
+  const { isOpen, openModal, closeModal } = useModal();
+
+  return { isOpen, openDialog: openModal, closeDialog: closeModal };
+};

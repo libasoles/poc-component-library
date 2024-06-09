@@ -1,8 +1,8 @@
 "use client";
 
+import PatientCard from "@/components/sections/PatientCard/PatientCard";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { Patient } from "types/Patient";
-import PatientCard from "../PatientCard";
 import PatientListLoading from "./PatientListLoading";
 import Message from "./Toast";
 

@@ -1,11 +1,11 @@
+import Avatar from "@/components/generic/Avatar";
+import Button from "@/components/generic/Button";
+import Column from "@/components/generic/layout/Column";
+import Row from "@/components/generic/layout/Row";
 import dayjs from "dayjs";
 import { useState } from "react";
 import { Patient } from "types/Patient";
-import Avatar from "../generic/Avatar";
-import Button from "../generic/Button";
-import Column from "../generic/layout/Column";
-import Row from "../generic/layout/Row";
-import { DeleteIcon } from "../icons";
+import DeletePatientButton from "./DeletePatientButton";
 
 type Props = {
   patient: Patient;
@@ -34,7 +34,7 @@ const PatientCard = ({ patient }: Props) => {
             </Column>
           </Row>
 
-          <Row className="justify-end gap-2">
+          <Row className="justify-between gap-2">
             <p
               className={`text-gray-300 text-base mt-4 ${
                 showMore ? "" : "truncate"
@@ -66,9 +66,7 @@ const PatientCard = ({ patient }: Props) => {
 
       <Row className="justify-end gap-2 p-2">
         <Button variant="text">Edit</Button>
-        <Button variant="text" color="red" icon={<DeleteIcon />}>
-          Delete
-        </Button>
+        <DeletePatientButton patient={patient} />
       </Row>
     </li>
   );

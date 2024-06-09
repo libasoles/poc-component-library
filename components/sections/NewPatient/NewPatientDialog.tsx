@@ -11,13 +11,13 @@ const submitFormEvent = new Event("submit", {
 
 type Props = {
   isOpen: boolean;
-  closeModal: () => void;
+  closeDialog: () => void;
 };
 
-const FormDialog = ({ isOpen, closeModal }: Props) => {
+const NewPatientDialog = ({ isOpen, closeDialog }: Props) => {
   const { formRef, form, reset, handleSubmit, errorSubmitting } =
     usePatientForm({
-      onSuccess: closeModal,
+      onSuccess: closeDialog,
     });
 
   const handleConfirm = () => {
@@ -26,7 +26,7 @@ const FormDialog = ({ isOpen, closeModal }: Props) => {
 
   const handleClose = () => {
     reset();
-    closeModal();
+    closeDialog();
   };
 
   return (
@@ -42,11 +42,11 @@ const FormDialog = ({ isOpen, closeModal }: Props) => {
         </FormProvider>
 
         {errorSubmitting && (
-          <Toast message="Error submitting form" variant="error" />
+          <Toast message="Error creating the patient" variant="error" />
         )}
       </Dialog>
     </>
   );
 };
 
-export default FormDialog;
+export default NewPatientDialog;

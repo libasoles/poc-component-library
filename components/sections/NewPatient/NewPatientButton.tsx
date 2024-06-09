@@ -1,19 +1,19 @@
 "use client";
 
 import Button from "@/components/generic/Button";
-import { useModal } from "@/components/generic/popups/useModal";
-import FormDialog from "./NewPatientDialog";
+import { useDialog } from "@/components/generic/popups/useModal";
+import NewPatientDialog from "./NewPatientDialog";
 
 const NewPatientButton = () => {
-  const { isOpen, openModal, closeModal } = useModal();
+  const { isOpen, openDialog, closeDialog } = useDialog();
 
   return (
     <>
-      <Button className="self-end" onClick={openModal}>
+      <Button className="self-end" onClick={openDialog}>
         Add patient
       </Button>
 
-      <FormDialog isOpen={isOpen} closeModal={closeModal} />
+      <NewPatientDialog isOpen={isOpen} closeDialog={closeDialog} />
     </>
   );
 };

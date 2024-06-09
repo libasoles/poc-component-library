@@ -1,4 +1,5 @@
 import { ComponentProps, forwardRef } from "react";
+import { twMerge } from "tailwind-merge";
 import Field from "./Field";
 
 type Props = {
@@ -10,7 +11,13 @@ type Props = {
 const TextArea = (props: Props, ref: Ref<HTMLTextAreaElement>) => {
   return (
     <Field {...props}>
-      {(fieldProps) => <textarea {...fieldProps} ref={ref} />}
+      {({ className, ...fieldProps }) => (
+        <textarea
+          {...fieldProps}
+          className={twMerge("min-h-36", className || "")}
+          ref={ref}
+        />
+      )}
     </Field>
   );
 };
