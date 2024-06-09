@@ -1,6 +1,6 @@
 "use client";
 
-import { ComponentProps, useEffect, useState } from "react";
+import { ComponentProps } from "react";
 import { createPortal } from "react-dom";
 import { twMerge } from "tailwind-merge";
 import { CrossIcon } from "../../icons";
@@ -22,13 +22,9 @@ const Modal = ({
   children,
   ...props
 }: ModalProps) => {
-  const [mounted, setMounted] = useState(false);
+  if (typeof window === "undefined") return null;
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted || !isOpen) {
+  if (!isOpen) {
     return null;
   }
 
@@ -39,13 +35,13 @@ const Modal = ({
     >
       <Column
         className={twMerge(
-          `justify-between bg-slate-800 px-6 py-4 rounded-lg shadow-lg min-h-40 min-w-96 h-fit w-fit relative z-50`,
+          `justify-between bg-slate-800 px-6 py-4 rounded-lg shadow-lg min-h-40 min-w-96 w-full h-full sm:h-fit sm:w-fit relative z-50`,
           className
         )}
       >
         <Row>
           <h2 className="text-2xl font-semibold">{title}</h2>
-          <IconButton onClick={onClose}>
+          <IconButton className="sm-hidden" onClick={onClose}>
             <CrossIcon />
           </IconButton>
         </Row>

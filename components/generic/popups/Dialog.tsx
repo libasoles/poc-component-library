@@ -15,7 +15,7 @@ const Dialog = ({ onConfirm, children, ...props }: Props) => {
       <Column className="justify-between h-full">
         {children}
 
-        <Row className="justify-end gap-2">
+        <Row className="justify-end gap-8 sm:gap-2">
           <Button onClick={props.onClose} variant="text">
             Cancel
           </Button>

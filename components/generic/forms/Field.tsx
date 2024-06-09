@@ -7,7 +7,7 @@ type Props = {
   error?: string;
   name: string;
   children: (
-    props: ComponentProps<"input" | "textarea">,
+    props: ComponentProps<"input"> | ComponentProps<"textarea">,
     ref: Ref<HTMLElement>
   ) => ReactElement;
 } & Omit<ComponentProps<"input">, "children">;
@@ -35,7 +35,7 @@ const Field = (
 
       {field}
 
-      <p className="text-red-500 text-xs italic h-2">{error || ""}</p>
+      <p className="text-red-400 text-xs italic h-2">{error || ""}</p>
     </div>
   );
 };
