@@ -1,13 +1,13 @@
 import Column from "@/components/generic/layout/Column";
 import Row from "@/components/generic/layout/Row";
-import NewPatientButton from "@/components/sections/NewPatientButton";
+import NewPatientButton from "@/components/sections/NewPatient/NewPatientButton";
 import PatientListScroller from "@/components/sections/PatientList/PatientListScroller";
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { fetchPatients, patientsQueryKey } from "api/useFetchPatients";
+import { fetchPatients, PATIENTS } from "api/useFetchPatients";
 
 export const metadata = {
   title: "Patients",
@@ -17,7 +17,7 @@ export default async function PatientsPage() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
-    queryKey: [patientsQueryKey],
+    queryKey: [PATIENTS],
     queryFn: fetchPatients,
   });
 

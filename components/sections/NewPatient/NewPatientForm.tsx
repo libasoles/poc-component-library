@@ -4,6 +4,8 @@ import Row from "@/components/generic/layout/Row";
 import { forwardRef, Ref } from "react";
 import { useFormContext } from "react-hook-form";
 
+const minDescriptionlength = 10;
+
 type Props = {
   handleSubmit: () => void;
 };
@@ -24,7 +26,7 @@ const NewPatienForm = (
           label="Complete name"
           placeholder="Name"
           {...register("name", {
-            required: "Required",
+            required: "Name is required",
           })}
           error={errors?.name?.message as string}
         />
@@ -40,10 +42,10 @@ const NewPatienForm = (
         label="Description"
         placeholder="Description"
         {...register("description", {
-          required: "Required",
+          required: "Description is required",
           minLength: {
-            value: 10,
-            message: "Must be at least 10 characters",
+            value: minDescriptionlength,
+            message: `Must be at least ${minDescriptionlength} characters`,
           },
         })}
         error={errors?.description?.message as string}

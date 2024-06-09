@@ -1,6 +1,6 @@
 "use client";
 
-import { ComponentProps } from "react";
+import { ComponentProps, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { twMerge } from "tailwind-merge";
 import { CrossIcon } from "../../icons";
@@ -22,7 +22,15 @@ const Modal = ({
   children,
   ...props
 }: ModalProps) => {
-  if (!isOpen) return <></>;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted || !isOpen) {
+    return null;
+  }
 
   return createPortal(
     <div
