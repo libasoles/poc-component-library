@@ -1,4 +1,4 @@
-import Column from "@/components/generic/Column";
+import Column from "@/components/generic/layout/Column";
 
 type Props = {
   message: string;

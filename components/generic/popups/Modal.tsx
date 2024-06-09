@@ -3,10 +3,10 @@
 import { ComponentProps } from "react";
 import { createPortal } from "react-dom";
 import { twMerge } from "tailwind-merge";
-import { CrossIcon } from "../icons";
-import Column from "./Column";
-import IconButton from "./IconButton";
-import Row from "./Row";
+import { CrossIcon } from "../../icons";
+import IconButton from "../IconButton";
+import Column from "../layout/Column";
+import Row from "../layout/Row";
 
 type Props = {
   title?: string;
@@ -26,12 +26,12 @@ const Modal = ({
 
   return createPortal(
     <div
-      className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center"
+      className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-40"
       {...props}
     >
       <Column
         className={twMerge(
-          `justify-between bg-slate-800 px-6 py-4 rounded-lg shadow-lg z-50 min-h-40 min-w-96 relative`,
+          `justify-between bg-slate-800 px-6 py-4 rounded-lg shadow-lg min-h-40 min-w-96 h-fit w-fit relative z-50`,
           className
         )}
       >

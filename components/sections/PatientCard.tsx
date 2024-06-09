@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Patient } from "types/Patient";
 import Avatar from "../generic/Avatar";
 import Button from "../generic/Button";
-import Column from "../generic/Column";
-import Row from "../generic/Row";
+import Column from "../generic/layout/Column";
+import Row from "../generic/layout/Row";
 import { DeleteIcon } from "../icons";
 
 type Props = {

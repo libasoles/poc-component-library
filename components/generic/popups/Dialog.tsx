@@ -1,10 +1,10 @@
 "use client";
 
 import { ComponentProps } from "react";
-import Button from "./Button";
-import Column from "./Column";
+import Button from "../Button";
+import Column from "../layout/Column";
+import Row from "../layout/Row";
 import Modal from "./Modal";
-import Row from "./Row";
 
 type Props = {
   title?: string;
@@ -14,7 +14,7 @@ type Props = {
 
 const Dialog = ({ children, ...props }: Props) => {
   return (
-    <Modal className="" {...props}>
+    <Modal {...props}>
       <Column className="justify-between h-full">
         {children}
 

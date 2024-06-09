@@ -1,5 +1,5 @@
-import Column from "@/components/generic/Column";
-import Row from "@/components/generic/Row";
+import Column from "@/components/generic/layout/Column";
+import Row from "@/components/generic/layout/Row";
 import NewPatientButton from "@/components/sections/NewPatientButton";
 import PatientListScroller from "@/components/sections/PatientList/PatientListScroller";
 import {
