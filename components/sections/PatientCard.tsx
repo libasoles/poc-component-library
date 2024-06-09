@@ -19,52 +19,55 @@ const PatientCard = ({ patient }: Props) => {
   const startDate = dayjs(patient.createdAt).format(dateFormat);
 
   return (
-    <li className="mt-6 p-4 bg-zinc-900 rounded-lg shadow-lg">
-      <Column>
-        <Row className="justify-between items-start">
-          <Row className="gap-4 items-center">
+    <li className="bg-gray-800 rounded-lg shadow-lg mb-2">
+      <Column className="mb-2 p-4">
+        <Column>
+          <Row className="justify-start items-center gap-4">
             <Avatar patient={patient} />
 
-            <div>
+            <Column>
               <h3 className="font-bold text-xl mb-1">{patient.name}</h3>
-              <p>
-                <span className="text-gray-400">Registration date:</span>{" "}
-                {startDate}
-              </p>
-            </div>
+              <Row className="gap-2">
+                <span className="text-neutral-400">Registration date:</span>
+                <span className="text-neutral-200">{startDate}</span>
+              </Row>
+            </Column>
           </Row>
 
           <Row className="justify-end gap-2">
-            <Button variant="text">Edit</Button>
-            <Button variant="text" color="red" icon={<DeleteIcon />}>
-              Delete
-            </Button>
+            <p
+              className={`text-gray-300 text-base mt-4 ${
+                showMore ? "" : "truncate"
+              }`}
+            >
+              {patient.description}
+            </p>
+            {!showMore && (
+              <Button
+                variant="text"
+                color="neutral"
+                className="mt-4 lowercase w-fit flex-none hover:bg-transparent hover:text-blue-300 hover:underline underline-offset-2"
+                onClick={() => setShowMore((prev) => !prev)}
+              >
+                ...see more
+              </Button>
+            )}
           </Row>
-        </Row>
-        <p
-          className={`text-gray-300 text-base mt-4 ${
-            showMore ? "" : "truncate"
-          }`}
-        >
-          {patient.description}
-        </p>
+        </Column>
+
+        {showMore && (
+          <div className="mt-4">
+            <a href="patient.website" target="_blank">
+              {patient.website}
+            </a>
+          </div>
+        )}
       </Column>
 
-      {showMore && (
-        <div className="mt-4">
-          <a href="patient.website" target="_blank">
-            {patient.website}
-          </a>
-        </div>
-      )}
-
-      <Row className="justify-end gap-2">
-        <Button
-          variant="text"
-          className="mt-4 lowercase"
-          onClick={() => setShowMore((prev) => !prev)}
-        >
-          {showMore ? "show less" : "...see more"}
+      <Row className="justify-end gap-2 p-2">
+        <Button variant="text">Edit</Button>
+        <Button variant="text" color="red" icon={<DeleteIcon />}>
+          Delete
         </Button>
       </Row>
     </li>
