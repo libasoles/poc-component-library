@@ -1,8 +1,10 @@
-import { PropsWithChildren } from "react";
+import { ComponentProps } from "react";
 
-const Card = ({ children }: PropsWithChildren) => {
+const Card = ({ children, ...props }: ComponentProps<"div">) => {
   return (
-    <div className="bg-gray-800 rounded-lg shadow-lg mb-2">{children}</div>
+    <div className="bg-gray-800 rounded-lg shadow-lg mb-2" {...props}>
+      {children}
+    </div>
   );
 };
 

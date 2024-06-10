@@ -6,7 +6,7 @@ import { useVirtualizer } from "@tanstack/react-virtual";
 import { Patient } from "types/Patient";
 import PatientListLoading from "./PatientListLoading";
 
-type ListProps = {
+export type ListProps = {
   isLoading: boolean;
   isError: boolean;
   patients?: Patient[];

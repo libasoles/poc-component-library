@@ -3,7 +3,10 @@ import Row from "@/components/generic/layout/Row";
 
 const PatientCardSkeleton = () => {
   return (
-    <li className="mb-4 p-4 h-48 bg-zinc-800 rounded-lg shadow-lg list-none transition-all">
+    <li
+      className="mb-4 p-4 h-48 bg-zinc-800 rounded-lg shadow-lg list-none transition-all"
+      data-testid="loading-skeleton"
+    >
       <div className="animate-pulse h-34">
         <Row className="space-x-4">
           <div className="rounded-full bg-slate-700 h-12 w-12"></div>
