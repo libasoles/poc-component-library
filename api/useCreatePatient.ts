@@ -9,6 +9,7 @@ async function createPatient(patient: DTO.EditablePatient) {
 
 type useCreatePatientProps = {
   onSuccess: () => void;
+  onError: () => void;
 };
 
 export type CreateMutationFn = {
@@ -17,6 +18,7 @@ export type CreateMutationFn = {
 
 export const useCreatePatient = ({
   onSuccess: handleSuccess,
+  onError: handleError,
 }: useCreatePatientProps) => {
   const queryClient = useQueryClient();
 

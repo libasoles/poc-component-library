@@ -1,9 +1,9 @@
 "use client";
 
+import { CrossIcon } from "@/components/icons";
 import { ComponentProps } from "react";
 import { createPortal } from "react-dom";
 import { twMerge } from "tailwind-merge";
-import { CrossIcon } from "../../icons";
 import IconButton from "../IconButton";
 import Column from "../layout/Column";
 import Row from "../layout/Row";
@@ -39,7 +39,7 @@ const Modal = ({
         shadow-lg
         ${
           fullscreen
-            ? "w-full h-full sm:h-fit"
+            ? "w-full h-full sm:h-fit sm:rounded-lg"
             : "w-fit h-fit sm:h-fit sm:w-fit rounded-lg"
         }  
         transition-all

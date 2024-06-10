@@ -1,9 +1,10 @@
+import Message from "@/components/generic/Message";
 import Dialog from "@/components/generic/popups/Dialog";
+import { useToastMessages } from "@/components/generic/popups/ToastContext";
 import { FormProvider } from "react-hook-form";
 import { Patient } from "types/Patient";
-import NewPatienForm from "../NewPatient/NewPatientForm";
 import { usePatientForm } from "../NewPatient/usePatientForm";
-import Toast from "../PatientList/Toast";
+import PatientForm from "../PatientForm";
 
 const submitFormEvent = new Event("submit", {
   cancelable: true,
@@ -17,6 +18,8 @@ type Props = {
 };
 
 const EditPatientDialog = ({ patient, isOpen, closeDialog }: Props) => {
+  const { addMessage } = useToastMessages();
+
   const initialValues = {
     name: patient.name,
     website: patient.website,
@@ -27,7 +30,13 @@ const EditPatientDialog = ({ patient, isOpen, closeDialog }: Props) => {
     usePatientForm({
       patientId: patient.id,
       initialValues,
-      onSuccess: closeDialog,
+      onSuccess: () => {
+        closeDialog();
+        addMessage("Patient updated successfully");
+      },
+      onError: () => {
+        addMessage("Error updating the patient");
+      },
     });
 
   const handleConfirm = () => {
@@ -49,11 +58,11 @@ const EditPatientDialog = ({ patient, isOpen, closeDialog }: Props) => {
         fullscreen
       >
         <FormProvider {...form}>
-          <NewPatienForm ref={formRef} handleSubmit={handleSubmit} />
+          <PatientForm ref={formRef} handleSubmit={handleSubmit} />
         </FormProvider>
 
         {errorSubmitting && (
-          <Toast message="Error updating the patient" variant="error" />
+          <Message content="Error updating the patient" variant="error" />
         )}
       </Dialog>
     </>

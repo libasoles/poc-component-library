@@ -17,10 +17,12 @@ async function updatePatient({ patientId, patientData }: UpdatePatientParams) {
 
 type useUpdatePatientProps = {
   onSuccess: () => void;
+  onError: () => void;
 };
 
 export function useUpdatePatient({
   onSuccess: handleSuccess,
+  onError: handleError,
 }: useUpdatePatientProps) {
   const queryClient = useQueryClient();
 
@@ -50,6 +52,8 @@ export function useUpdatePatient({
 
       // Rollback the cache update on error
       queryClient.setQueryData([PATIENTS], cachedPatientList);
+
+      handleError();
     },
     onSuccess: (response, variables, context) => {
       handleSuccess();

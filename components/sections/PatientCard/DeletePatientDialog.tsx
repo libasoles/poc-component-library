@@ -1,8 +1,8 @@
 import Column from "@/components/generic/layout/Column";
 import Dialog from "@/components/generic/popups/Dialog";
+import { useToastMessages } from "@/components/generic/popups/ToastContext";
 import { useDeletePatient } from "api/useDeletePatient";
 import { Patient } from "types/Patient";
-import Toast from "../PatientList/Toast";
 
 type Props = {
   patient: Patient;
@@ -11,9 +11,15 @@ type Props = {
 };
 
 const DeletePatientDialog = ({ patient, isOpen, closeDialog }: Props) => {
+  const { addMessage, addErrorMessage } = useToastMessages();
+
   const { mutate } = useDeletePatient({
-    onSuccess: closeDialog, // TODO: toast
-    onError: () => {}, // TODO
+    onSuccess: () => {
+      closeDialog();
+    },
+    onError: () => {
+      addErrorMessage("Error deleting the patient");
+    },
   });
 
   const handleSubmit = () => {
@@ -23,8 +29,6 @@ const DeletePatientDialog = ({ patient, isOpen, closeDialog }: Props) => {
   const handleClose = () => {
     closeDialog();
   };
-
-  const errorSubmitting = false;
 
   return (
     <>
@@ -41,10 +45,6 @@ const DeletePatientDialog = ({ patient, isOpen, closeDialog }: Props) => {
             }
           </p>
         </Column>
-
-        {errorSubmitting && (
-          <Toast message="Error deleting the patient" variant="error" />
-        )}
       </Dialog>
     </>
   );

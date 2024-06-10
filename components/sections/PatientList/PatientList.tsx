@@ -1,10 +1,10 @@
 "use client";
 
+import Message from "@/components/generic/Message";
 import PatientCard from "@/components/sections/PatientCard/PatientCard";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { Patient } from "types/Patient";
 import PatientListLoading from "./PatientListLoading";
-import Message from "./Toast";
 
 type ListProps = {
   isLoading: boolean;
@@ -25,11 +25,11 @@ const PatienList = ({
     return (
       <Message
         variant="error"
-        message="We couldn't retrieve the list of patients. Either create one, or try loading the page again in a few seconds."
+        content="We couldn't retrieve the list of patients. Either create one, or try loading the page again in a few seconds."
       />
     );
 
-  if (patients.length === 0) return <Message message="No patients found" />;
+  if (patients.length === 0) return <Message content="No patients found" />;
 
   return (
     <ul className="w-full">

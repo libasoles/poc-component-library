@@ -12,14 +12,16 @@ const defaultValues: DTO.EditablePatient = {
 
 type usePatientForm = {
   patientId?: string;
-  initialValues: DTO.EditablePatient;
+  initialValues?: DTO.EditablePatient;
   onSuccess: () => void;
+  onError: () => void;
 };
 
 export const usePatientForm = ({
   patientId,
   initialValues = defaultValues,
   onSuccess: handleSuccess,
+  onError: handleError,
 }: usePatientForm) => {
   const formRef = useRef<HTMLFormElement>(null);
   const form = useForm<DTO.EditablePatient>({
@@ -33,6 +35,7 @@ export const usePatientForm = ({
       handleSuccess();
       resetState();
     },
+    onError: handleError,
   });
 
   const handleSubmit = form.handleSubmit((values) => {
