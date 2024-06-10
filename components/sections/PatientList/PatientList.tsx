@@ -34,10 +34,11 @@ const PatienList = ({
   return (
     <ul className="w-full">
       {virtualizedList.getVirtualItems().map((virtualRow) => (
-        <div
+        <li
           key={virtualRow.key}
           ref={virtualizedList.measureElement}
           data-index={virtualRow.index}
+          className="transition-all"
           style={{
             position: "absolute",
             top: 0,
@@ -48,7 +49,7 @@ const PatienList = ({
           }}
         >
           <PatientCard patient={patients[virtualRow.index]} />
-        </div>
+        </li>
       ))}
     </ul>
   );

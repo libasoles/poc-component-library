@@ -1,12 +1,8 @@
 import { ComponentProps, forwardRef, Ref } from "react";
 import { twMerge } from "tailwind-merge";
-import Field from "./Field";
+import Field, { FieldProps } from "./Field";
 
-type TextAreaProps = {
-  label?: string;
-  error?: string;
-  name: string;
-} & ComponentProps<"textarea">;
+type TextAreaProps = FieldProps & ComponentProps<"textarea">;
 
 const TextArea = (props: TextAreaProps, ref: Ref<HTMLTextAreaElement>) => {
   return (

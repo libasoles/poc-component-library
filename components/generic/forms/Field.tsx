@@ -2,7 +2,7 @@ import { ReactElement } from "react";
 import { twMerge } from "tailwind-merge";
 import Label from "./Label";
 
-type OwnProps = {
+export type FieldProps = {
   id?: string;
   label?: string;
   error?: string;
@@ -14,7 +14,7 @@ type ChildrenProps<T> = T & { className: string };
 
 type CombinedProps<T> = {
   children: (props: ChildrenProps<T>) => ReactElement;
-} & OwnProps &
+} & FieldProps &
   Omit<T, "children">;
 
 const Field = <T extends {}>({
@@ -46,7 +46,9 @@ const Field = <T extends {}>({
 
   return (
     <div className="mt-1 mb-2">
-      <Label htmlFor={id ? id : name}>{label}</Label>
+      <Label htmlFor={id ? id : name} className="block text-sm">
+        {label}
+      </Label>
 
       {field}
 

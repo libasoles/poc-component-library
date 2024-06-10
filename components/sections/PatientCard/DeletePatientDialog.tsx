@@ -1,6 +1,8 @@
+import Label from "@/components/generic/forms/Label";
 import Column from "@/components/generic/layout/Column";
 import Dialog from "@/components/generic/popups/Dialog";
 import { useToastMessages } from "@/components/generic/popups/ToastContext";
+import Text from "@/components/generic/Text";
 import { useDeletePatient } from "api/useDeletePatient";
 import { Patient } from "types/Patient";
 
@@ -39,19 +41,19 @@ const DeletePatientDialog = ({ patient, closeDialog }: Props) => {
         title="Delete patient"
       >
         <Column className="my-8 h-full justify-center">
-          <p className="text-md">
+          <Text>
             {
               "This action can't be undone. Are you sure you want to delete this patient?"
             }
-          </p>
-          <p className="text-md mt-3 text-gray-300">
-            <span className=" text-gray-400 mr-2">Name:</span>
+          </Text>
+          <Text className="mt-3">
+            <Label className="mr-2">Name:</Label>
             {patient.name}
-          </p>
-          <p className="text-md text-gray-300">
-            <span className=" text-gray-400 mr-2">ID:</span>
+          </Text>
+          <Text>
+            <Label className="mr-2">ID:</Label>
             {patient.id}
-          </p>
+          </Text>
         </Column>
       </Dialog>
     </>
