@@ -1,14 +1,14 @@
-import { ComponentProps, forwardRef } from "react";
+import { ComponentProps, forwardRef, Ref } from "react";
 import { twMerge } from "tailwind-merge";
 import Field from "./Field";
 
-type Props = {
+type TextAreaProps = {
   label?: string;
   error?: string;
   name: string;
-} & ComponentProps<"input">;
+} & ComponentProps<"textarea">;
 
-const TextArea = (props: Props, ref: Ref<HTMLTextAreaElement>) => {
+const TextArea = (props: TextAreaProps, ref: Ref<HTMLTextAreaElement>) => {
   return (
     <Field {...props}>
       {({ className, ...fieldProps }) => (
@@ -22,4 +22,4 @@ const TextArea = (props: Props, ref: Ref<HTMLTextAreaElement>) => {
   );
 };
 
-export default forwardRef(TextArea);
+export default forwardRef<HTMLTextAreaElement, TextAreaProps>(TextArea);

@@ -1,13 +1,13 @@
 import { ComponentProps, forwardRef, Ref } from "react";
 import Field from "./Field";
 
-type Props = {
+type TextFieldProps = {
   label?: string;
   error?: string;
   name: string;
 } & ComponentProps<"input">;
 
-const TextField = (props: Props, ref: Ref<HTMLInputElement>) => {
+const TextField = (props: TextFieldProps, ref: Ref<HTMLInputElement>) => {
   return (
     <Field {...props}>
       {(fieldProps) => <input ref={ref} {...fieldProps} />}
@@ -15,4 +15,4 @@ const TextField = (props: Props, ref: Ref<HTMLInputElement>) => {
   );
 };
 
-export default forwardRef(TextField);
+export default forwardRef<HTMLInputElement, TextFieldProps>(TextField);

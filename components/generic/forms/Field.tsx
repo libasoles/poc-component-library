@@ -1,21 +1,29 @@
-import { ComponentProps, forwardRef, ReactElement, Ref } from "react";
+import { ReactElement } from "react";
 import { twMerge } from "tailwind-merge";
 import Label from "./Label";
 
-type Props = {
+type OwnProps = {
+  id?: string;
   label?: string;
   error?: string;
   name: string;
-  children: (
-    props: ComponentProps<"input"> | ComponentProps<"textarea">,
-    ref: Ref<HTMLElement>
-  ) => ReactElement;
-} & Omit<ComponentProps<"input">, "children">;
+  className?: string;
+};
 
-const Field = (
-  { label = "", error = "", className = "", children, ...props }: Props,
-  ref: Ref<HTMLElement>
-): ReactElement => {
+type ChildrenProps<T> = T & { className: string };
+
+type CombinedProps<T> = {
+  children: (props: ChildrenProps<T>) => ReactElement;
+} & OwnProps &
+  Omit<T, "children">;
+
+const Field = <T extends {}>({
+  label = "",
+  error = "",
+  className = "",
+  children,
+  ...props
+}: CombinedProps<T>): ReactElement => {
   const border = error ? "border-red-500" : "border-gray-500";
   const focus =
     "focus:outline-none focus:shadow-outline focus:border-blue-400 focus:placeholder-transparent";
@@ -29,7 +37,10 @@ const Field = (
     className
   );
 
-  const field = children({ ...props, className: fieldClassName }, ref);
+  const field = children({
+    ...props,
+    className: fieldClassName,
+  } as unknown as ChildrenProps<T>);
 
   const { id, name } = props;
 
@@ -44,4 +55,4 @@ const Field = (
   );
 };
 
-export default forwardRef(Field);
+export default Field;
