@@ -1,5 +1,4 @@
-import { render, screen, waitFor, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen } from "@testing-library/react";
 import Providers from "app/providers";
 import { aListOfPatients } from "mocks/factory";
 import { createVirtualizedList } from "mocks/virtualList";
@@ -55,34 +54,6 @@ describe("List of patients", () => {
   });
 
   describe("Delete patient", () => {
-    it("should display a confirmation dialog when clicking on delete patient button", async () => {
-      renderElement({ patients: aListOfPatients });
-
-      await clickDeleteButton();
-
-      await waitFor(() => {
-        const dialog = screen.getByRole("dialog");
-
-        expect(dialog).toBeInTheDocument();
-        expect(dialog).toHaveTextContent("Delete patient");
-        expect(dialog).toHaveTextContent(
-          "This action can't be undone. Are you sure you want to delete this patient?"
-        );
-      });
-    });
-
     // TODO: test it should delete an patient when clicking the confirm button
   });
 });
-
-async function clickDeleteButton() {
-  await waitFor(() => {
-    const patientCard = screen.getAllByRole("listitem")[0];
-
-    const deleteButton = within(patientCard).getByRole("button", {
-      name: /delete/i,
-    });
-
-    userEvent.click(deleteButton);
-  });
-}

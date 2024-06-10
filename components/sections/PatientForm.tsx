@@ -24,6 +24,7 @@ const PatientForm = (
     <form ref={formRef} className="pt-6 pb-8" onSubmit={handleSubmit}>
       <Row className="gap-4">
         <TextField
+          id="name"
           label="Complete name"
           placeholder="Name"
           {...register("name", {
@@ -36,6 +37,7 @@ const PatientForm = (
           error={errors?.name?.message as string}
         />
         <TextField
+          id="website"
           label="Website"
           placeholder="Url"
           {...register("website")}
@@ -44,6 +46,7 @@ const PatientForm = (
       </Row>
 
       <TextArea
+        id="description"
         label="Description"
         placeholder="Description"
         {...register("description", {

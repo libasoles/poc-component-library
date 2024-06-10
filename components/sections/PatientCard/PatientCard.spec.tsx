@@ -1,4 +1,13 @@
-import { render, screen } from "@testing-library/react";
+import {
+  BoundFunctions,
+  Queries,
+  render,
+  Screen,
+  screen,
+  waitFor,
+  within,
+} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import Providers from "app/providers";
 import {
   aPatientWithLongDescription,
@@ -38,55 +47,143 @@ describe("Patient card", () => {
     expect(avatarImage).toBeInTheDocument();
   });
 
-  it("should display the 'see more' button in the card", async () => {
-    renderElement(aPatientWithLongDescription);
+  describe("See more button", () => {
+    it("should display the 'see more' button in the card", async () => {
+      renderElement(aPatientWithLongDescription);
 
-    const patientCard = getButton(/...see more/i);
+      const patientCard = queryButton(/...see more/i);
 
-    expect(patientCard).toBeInTheDocument;
-  });
-
-  it("should display the 'see more' button if patient has website but no description", async () => {
-    renderElement(aPatientWithoutDescription);
-
-    const patientCard = getButton(/...see more/i);
-
-    expect(patientCard).toBeInTheDocument;
-  });
-
-  it("should not display the 'see more' button if text is too short and lacks of website", async () => {
-    renderElement({
-      ...aPatientWithShortDescription,
-      website: "",
+      expect(patientCard).toBeInTheDocument;
     });
 
-    const patientCard = getButton(/...see more/i);
+    it("should display the 'see more' button if patient has website but no description", async () => {
+      renderElement(aPatientWithoutDescription);
 
-    expect(patientCard).not.toBeInTheDocument;
-  });
+      const patientCard = queryButton(/...see more/i);
 
-  it("should not display the 'see more' button if text lacks of description and website", async () => {
-    renderElement({
-      ...aPatientWithoutDescription,
-      website: "",
+      expect(patientCard).toBeInTheDocument;
     });
 
-    const patientCard = getButton(/...see more/i);
+    it("should not display the 'see more' button if text is too short and lacks of website", async () => {
+      renderElement({
+        ...aPatientWithShortDescription,
+        website: "",
+      });
 
-    expect(patientCard).not.toBeInTheDocument;
+      const patientCard = queryButton(/...see more/i);
+
+      expect(patientCard).not.toBeInTheDocument;
+    });
+
+    it("should not display the 'see more' button if text lacks of description and website", async () => {
+      renderElement({
+        ...aPatientWithoutDescription,
+        website: "",
+      });
+
+      const patientCard = queryButton(/...see more/i);
+
+      expect(patientCard).not.toBeInTheDocument;
+    });
   });
 
-  it("should display the actions to edit and delete the patient", () => {
-    renderElement(aPatientWithLongDescription);
+  describe("Delete button", () => {
+    it("should display the actions to edit and delete the patient", () => {
+      renderElement(aPatientWithLongDescription);
 
-    const viewButton = getButton(/edit/i);
-    const deleteButton = getButton(/delete/i);
+      const editButton = queryButton(/edit/i);
+      const deleteButton = queryButton(/delete/i);
 
-    expect(viewButton).toBeInTheDocument();
-    expect(deleteButton).toBeInTheDocument();
+      expect(editButton).toBeInTheDocument();
+      expect(deleteButton).toBeInTheDocument();
+    });
+
+    it("should display a confirmation dialog when clicking on delete patient button", async () => {
+      renderElement(aPatientWithLongDescription);
+
+      await clickDeleteButton();
+
+      await waitFor(() => {
+        const dialog = screen.getByRole("dialog");
+
+        expect(dialog).toBeInTheDocument();
+        expect(dialog).toHaveTextContent("Delete patient");
+        expect(dialog).toHaveTextContent(
+          "This action can't be undone. Are you sure you want to delete this patient?"
+        );
+      });
+    });
+  });
+
+  describe("Edit button", () => {
+    it("should display the edit patient form when clicking on the edit patient button", async () => {
+      renderElement(aPatientWithLongDescription);
+
+      const { name, website, description } = aPatientWithLongDescription;
+
+      const editButton = screen.getByRole("button", { name: /edit/i });
+
+      userEvent.click(editButton);
+
+      await waitFor(() => {
+        const dialog = screen.getByRole("dialog");
+
+        const cancelButton = queryButton(/cancel/i, within(dialog));
+        const confirmButton = queryButton(/ok/i, within(dialog));
+
+        expect(dialog).toBeInTheDocument();
+        expect(dialog).toHaveTextContent("Edit patient");
+
+        expect(within(dialog).getByLabelText("Complete name")).toHaveValue(
+          name
+        );
+        expect(within(dialog).getByLabelText("Website")).toHaveValue(website);
+        expect(within(dialog).getByLabelText("Description")).toHaveValue(
+          description
+        );
+
+        expect(cancelButton).toBeInTheDocument();
+        expect(confirmButton).toBeInTheDocument();
+      });
+    });
+
+    it("should close the dialog when clicking on the cancel button", async () => {
+      renderElement(aPatientWithLongDescription);
+
+      const editButton = screen.getByRole("button", { name: /edit/i });
+
+      userEvent.click(editButton);
+
+      await waitFor(() => {
+        const dialog = screen.getByRole("dialog");
+
+        const cancelButton = within(dialog).getByRole("button", {
+          name: /cancel/i,
+        });
+
+        userEvent.click(cancelButton);
+      });
+
+      expect(screen.findByRole("dialog")).rejects.toThrow();
+    });
   });
 });
 
-function getButton(regex: RegExp) {
-  return screen.queryByRole("button", { name: regex });
+function queryButton(
+  regex: RegExp,
+  element: Screen | BoundFunctions<Queries> = screen
+) {
+  return element.queryByRole("button", { name: regex });
+}
+
+async function clickDeleteButton() {
+  await waitFor(() => {
+    const patientCard = screen.getByRole("article");
+
+    const deleteButton = within(patientCard).getByRole("button", {
+      name: /delete/i,
+    });
+
+    userEvent.click(deleteButton);
+  });
 }
