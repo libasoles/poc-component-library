@@ -37,6 +37,7 @@ const PatientListScroller = () => {
       className="mt-2 h-screen"
     >
       <div
+        className="max-w-screen-md mx-auto"
         style={{
           width: "100%",
           position: "relative",

@@ -23,11 +23,12 @@ export default async function PatientsPage() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <Column className="max-h-screen overflow-hidden">
-        <Row className="box-border border-b border-gray-800 pb-4">
+      <Column>
+        <Row className="box-border border-b border-gray-800 pb-4 max-w-screen-md justify-between mx-auto w-full">
           <h1 className="text-3xl">Patient Records</h1>
           <NewPatientButton />
         </Row>
+
         <PatientListScroller />
       </Column>
     </HydrationBoundary>
