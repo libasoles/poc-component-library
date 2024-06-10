@@ -1,10 +1,10 @@
 import { ComponentProps } from "react";
 
-const Card = ({ children, ...props }: ComponentProps<"div">) => {
+const Card = ({ children, ...props }: ComponentProps<"article">) => {
   return (
-    <div className="bg-gray-800 rounded-lg shadow-lg mb-2" {...props}>
+    <article className="bg-gray-800 rounded-lg shadow-lg mb-2" {...props}>
       {children}
-    </div>
+    </article>
   );
 };
 

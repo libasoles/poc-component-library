@@ -1,43 +1,9 @@
-import { useVirtualizer } from "@tanstack/react-virtual";
 import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Providers from "app/providers";
-import dayjs from "dayjs";
-import { Patient } from "types/Patient";
+import { aListOfPatients } from "mocks/factory";
+import { createVirtualizedList } from "mocks/virtualList";
 import PatientList from "./PatientList";
-
-function createPatient({ ...data }: Partial<Patient>): Patient {
-  const randomId = Math.floor(Math.random() * 1000);
-
-  return {
-    id: String(randomId),
-    name: "John Doe",
-    avatar: "https://person.com/1",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    website: "https://test.com",
-    createdAt: dayjs(),
-    ...data,
-  };
-}
-
-const aListOfPatients = [
-  createPatient({ name: "Lawrence McLaurin" }),
-  createPatient({ name: "Alice Lillidel" }),
-  createPatient({ name: "Beatriz Pasadena" }),
-];
-
-const createVirtualizedList = (patients: Patient[]) =>
-  ({
-    getVirtualItems: jest.fn(() => {
-      return new Array(patients.length).fill(0).map((_, index) => ({
-        key: index,
-        index,
-        size: 100,
-        start: index * 100,
-      }));
-    }),
-    virtualizedList: jest.fn(() => 100),
-  } as unknown as ReturnType<typeof useVirtualizer<HTMLDivElement, Element>>);
 
 describe("List of patients", () => {
   function renderElement({
@@ -104,6 +70,8 @@ describe("List of patients", () => {
         );
       });
     });
+
+    // TODO: test it should delete an patient when clicking the confirm button
   });
 });
 
