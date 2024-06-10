@@ -15,6 +15,9 @@ type Props = {
 const dateFormat = "MMMM D, YYYY";
 
 const PatientCard = ({ patient }: Props) => {
+  const shouldHaveShowMoreFeature =
+    patient.description.length > 100 || patient.website.length > 0;
+
   const [showMore, setShowMore] = useState(false);
 
   const startDate = dayjs(patient.createdAt).format(dateFormat);
@@ -44,7 +47,7 @@ const PatientCard = ({ patient }: Props) => {
               >
                 {patient.description}
               </p>
-              {!showMore && (
+              {shouldHaveShowMoreFeature && !showMore && (
                 <Button
                   variant="text"
                   color="neutral"
