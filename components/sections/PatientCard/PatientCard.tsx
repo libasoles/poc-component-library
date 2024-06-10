@@ -3,7 +3,7 @@ import Avatar from "@/components/generic/avatar/Avatar";
 import Button from "@/components/generic/buttons/Button";
 import Column from "@/components/generic/layout/Column";
 import Row from "@/components/generic/layout/Row";
-import dayjs from "dayjs";
+import config from "api/config";
 import { useState } from "react";
 import { Patient } from "types/Patient";
 import DeletePatientButton from "./DeletePatientButton";
@@ -13,15 +13,13 @@ type Props = {
   patient: Patient;
 };
 
-const dateFormat = "MMMM D, YYYY";
-
 const PatientCard = ({ patient }: Props) => {
   const shouldHaveShowMoreFeature =
     patient.description.length > 100 || patient.website.length > 0;
 
   const [showMore, setShowMore] = useState(false);
 
-  const startDate = dayjs(patient.createdAt).format(dateFormat);
+  const startDate = patient.createdAt.format(config.dates.longDateFormat);
 
   return (
     <li className="transition-all">
@@ -35,7 +33,7 @@ const PatientCard = ({ patient }: Props) => {
                 <h3 className="font-bold text-xl mb-1">{patient.name}</h3>
                 <Row className="gap-2">
                   <span className="text-neutral-400">Registration date:</span>
-                  <span className="text-neutral-200">{startDate}</span>
+                  <span className="text-neutral-300">{startDate}</span>
                 </Row>
               </Column>
             </Row>

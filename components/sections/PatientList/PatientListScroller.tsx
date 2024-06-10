@@ -2,7 +2,6 @@
 
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { useFetchPatients } from "api/useFetchPatients";
-import dayjs from "dayjs";
 import { useRef } from "react";
 import PatienList from "./PatientList";
 
@@ -13,9 +12,7 @@ const PatientListScroller = () => {
 
   const { data, isLoading, isError } = useFetchPatients();
 
-  const patients = data?.sort((a, b) =>
-    dayjs(b.createdAt).diff(dayjs(a.createdAt))
-  );
+  const patients = data?.sort((a, b) => b.createdAt.diff(a.createdAt));
 
   const virtualizedList = useVirtualizer({
     count: patients?.length || 0,
