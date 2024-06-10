@@ -121,7 +121,7 @@ describe("Patient card", () => {
 
       const { name, website, description } = aPatientWithLongDescription;
 
-      const editButton = screen.getByRole("button", { name: /edit/i });
+      const editButton = getButton(/edit/i);
 
       userEvent.click(editButton);
 
@@ -150,7 +150,7 @@ describe("Patient card", () => {
     it("should close the dialog when clicking on the cancel button", async () => {
       renderElement(aPatientWithLongDescription);
 
-      const editButton = screen.getByRole("button", { name: /edit/i });
+      const editButton = getButton(/edit/i);
 
       userEvent.click(editButton);
 
@@ -174,6 +174,14 @@ function queryButton(
   element: Screen | BoundFunctions<Queries> = screen
 ) {
   return element.queryByRole("button", { name: regex });
+}
+
+// TODO: move to a test utils file
+function getButton(
+  regex: RegExp,
+  element: Screen | BoundFunctions<Queries> = screen
+) {
+  return element.getByRole("button", { name: regex }) as HTMLElement;
 }
 
 async function clickDeleteButton() {
