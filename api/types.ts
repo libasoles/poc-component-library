@@ -6,9 +6,6 @@ namespace DTO {
     description: string;
     website: string;
     id: string;
-    params: {
-      description: string;
-    };
   }
   export interface EditablePatient {
     id?: string;

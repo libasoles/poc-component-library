@@ -66,7 +66,6 @@ const Modal = ({
       flex items-center justify-center
       `}
       onClick={(event) => {
-        console.log(event, event.target, event.currentTarget);
         if (event.target === event.currentTarget) {
           onClose();
         }
