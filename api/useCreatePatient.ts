@@ -28,7 +28,7 @@ export const useCreatePatient = ({
       await queryClient.cancelQueries({ queryKey: [PATIENTS] });
       const previouspatients = queryClient.getQueryData([PATIENTS]);
 
-      const randomId = Math.floor(Math.random() * 1000);
+      const randomId = Math.floor(Math.random() * 100000);
 
       // Optimistically update the cache
       queryClient.setQueryData([PATIENTS], (old: DTO.EditablePatient[]) => [
@@ -43,14 +43,9 @@ export const useCreatePatient = ({
       queryClient.setQueryData([PATIENTS], context?.previouspatients);
     },
     onSettled: (response, error, variables, context) => {
-      if (!response?.status) {
-        // Rollback the cache update on unhandled error
-        queryClient.setQueryData([PATIENTS], context?.previouspatients);
-      } else {
-        queryClient.invalidateQueries({ queryKey: [PATIENTS] });
+      queryClient.invalidateQueries({ queryKey: [PATIENTS] });
 
-        handleSuccess();
-      }
+      handleSuccess();
     },
   });
 };

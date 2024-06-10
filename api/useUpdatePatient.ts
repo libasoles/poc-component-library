@@ -56,10 +56,9 @@ export function useUpdatePatient({
       handleError();
     },
     onSuccess: (response, variables, context) => {
-      handleSuccess();
+      queryClient.invalidateQueries({ queryKey: [PATIENTS] });
 
-      // TODO: we might want to refresh the list of patients nevertheless
-      // queryClient.invalidateQueries({ queryKey: [PATIENTS] });
+      handleSuccess();
     },
   });
 }
