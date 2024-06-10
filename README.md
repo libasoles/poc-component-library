@@ -1,4 +1,12 @@
-# Light-it challenge
+# Code challenge
+
+![Demo list](public/demo.png)
+
+![Demo form](public/demoForm.png)
+
+## Description
+
+This is a simple project to manage a list of patients. You can create, edit and delete users. It's a single page application, so you can do all these actions without leaving the page.
 
 ## Techonologies
 
@@ -34,7 +42,7 @@ It will run on port `3000` by default.
 
 Head to <http://localhost:3000/>
 
-## Description of some decisions made
+## Design decisions and reasons behind libraries/tools
 
 I'm using `React Query` for data fetching. And invalidating the cache after the create, edit and delete actions.
 
