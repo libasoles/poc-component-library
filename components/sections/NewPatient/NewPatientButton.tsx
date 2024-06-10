@@ -13,7 +13,7 @@ const NewPatientButton = () => {
         Add patient
       </Button>
 
-      <NewPatientDialog isOpen={isOpen} closeDialog={closeDialog} />
+      {isOpen && <NewPatientDialog closeDialog={closeDialog} />}
     </>
   );
 };

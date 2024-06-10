@@ -24,11 +24,9 @@ const EditPatientButton = ({ patient }: Props) => {
         Edit
       </Button>
 
-      <EditPatientDialog
-        patient={patient}
-        isOpen={isOpen}
-        closeDialog={closeDialog}
-      />
+      {isOpen && (
+        <EditPatientDialog patient={patient} closeDialog={closeDialog} />
+      )}
     </>
   );
 };

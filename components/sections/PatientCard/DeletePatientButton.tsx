@@ -24,11 +24,9 @@ const DeletePatientButton = ({ patient }: Props) => {
         Delete
       </Button>
 
-      <DeletePatientDialog
-        patient={patient}
-        isOpen={isOpen}
-        closeDialog={closeDialog}
-      />
+      {isOpen && (
+        <DeletePatientDialog patient={patient} closeDialog={closeDialog} />
+      )}
     </>
   );
 };

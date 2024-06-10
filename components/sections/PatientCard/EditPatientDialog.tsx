@@ -13,11 +13,10 @@ const submitFormEvent = new Event("submit", {
 
 type Props = {
   patient: Patient;
-  isOpen: boolean;
   closeDialog: () => void;
 };
 
-const EditPatientDialog = ({ patient, isOpen, closeDialog }: Props) => {
+const EditPatientDialog = ({ patient, closeDialog }: Props) => {
   const { addMessage } = useToastMessages();
 
   const initialValues = {
@@ -51,7 +50,7 @@ const EditPatientDialog = ({ patient, isOpen, closeDialog }: Props) => {
   return (
     <>
       <Dialog
-        isOpen={isOpen}
+        isOpen
         onClose={handleClose}
         onConfirm={handleConfirm}
         title="Edit patient"

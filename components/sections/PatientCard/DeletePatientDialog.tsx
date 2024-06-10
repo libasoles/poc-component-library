@@ -6,16 +6,16 @@ import { Patient } from "types/Patient";
 
 type Props = {
   patient: Patient;
-  isOpen: boolean;
   closeDialog: () => void;
 };
 
-const DeletePatientDialog = ({ patient, isOpen, closeDialog }: Props) => {
+const DeletePatientDialog = ({ patient, closeDialog }: Props) => {
   const { addMessage, addErrorMessage } = useToastMessages();
 
   const { mutate } = useDeletePatient({
     onSuccess: () => {
       closeDialog();
+      addMessage("Patient deleted successfully");
     },
     onError: () => {
       addErrorMessage("Error deleting the patient");
@@ -33,7 +33,7 @@ const DeletePatientDialog = ({ patient, isOpen, closeDialog }: Props) => {
   return (
     <>
       <Dialog
-        isOpen={isOpen}
+        isOpen
         onClose={handleClose}
         onConfirm={handleSubmit}
         title="Delete patient"
@@ -43,6 +43,14 @@ const DeletePatientDialog = ({ patient, isOpen, closeDialog }: Props) => {
             {
               "This action can't be undone. Are you sure you want to delete this patient?"
             }
+          </p>
+          <p className="text-md mt-3 text-gray-300">
+            <span className=" text-gray-400 mr-2">Name:</span>
+            {patient.name}
+          </p>
+          <p className="text-md text-gray-300">
+            <span className=" text-gray-400 mr-2">ID:</span>
+            {patient.id}
           </p>
         </Column>
       </Dialog>
