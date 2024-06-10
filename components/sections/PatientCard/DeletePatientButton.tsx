@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/generic/Button";
+import Button from "@/components/generic/buttons/Button";
 import { useDialog } from "@/components/generic/popups/useDialog";
 import { DeleteIcon } from "@/components/icons";
 import { Patient } from "types/Patient";

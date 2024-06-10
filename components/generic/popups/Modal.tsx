@@ -4,7 +4,7 @@ import { CrossIcon } from "@/components/icons";
 import { ComponentProps } from "react";
 import { createPortal } from "react-dom";
 import { twMerge } from "tailwind-merge";
-import IconButton from "../IconButton";
+import IconButton from "../buttons/IconButton";
 import Column from "../layout/Column";
 import Row from "../layout/Row";
 

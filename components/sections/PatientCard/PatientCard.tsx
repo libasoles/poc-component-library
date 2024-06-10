@@ -1,5 +1,6 @@
 import ActionBar from "@/components/generic/ActionBar";
-import Button from "@/components/generic/Button";
+import Avatar from "@/components/generic/avatar/Avatar";
+import Button from "@/components/generic/buttons/Button";
 import Column from "@/components/generic/layout/Column";
 import Row from "@/components/generic/layout/Row";
 import dayjs from "dayjs";
@@ -28,7 +29,7 @@ const PatientCard = ({ patient }: Props) => {
         <Column className="mb-2 p-4">
           <Column>
             <Row className="justify-start items-center gap-4">
-              {/* <Avatar patient={patient} /> */}
+              <Avatar patient={patient} />
 
               <Column>
                 <h3 className="font-bold text-xl mb-1">{patient.name}</h3>

@@ -1,7 +1,7 @@
 "use client";
 
 import ActionBar from "../ActionBar";
-import Button from "../Button";
+import Button from "../buttons/Button";
 import Column from "../layout/Column";
 import Modal, { ModalProps } from "./Modal";
 

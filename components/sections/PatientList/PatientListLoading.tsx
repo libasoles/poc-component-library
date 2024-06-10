@@ -3,7 +3,7 @@ import Row from "@/components/generic/layout/Row";
 
 const PatientCardSkeleton = () => {
   return (
-    <li className="mt-6 p-4 bg-zinc-800 rounded-lg shadow-lg list-none transition-all">
+    <li className="mb-4 p-4 h-48 bg-zinc-800 rounded-lg shadow-lg list-none transition-all">
       <div className="animate-pulse h-34">
         <Row className="space-x-4">
           <div className="rounded-full bg-slate-700 h-12 w-12"></div>
@@ -22,8 +22,8 @@ const PatientCardSkeleton = () => {
           </div>
         </div>
 
-        <Row className="space-x-6 justify-end">
-          <div className="h-2 bg-slate-700 rounded w-10 mt-6 self-end"></div>
+        <Row className="mt-6 space-x-6 justify-end">
+          <div className="h-2 bg-slate-700 rounded w-16 mt-6 self-end"></div>
           <div className="h-2 bg-slate-700 rounded w-16 mt-6 self-end"></div>
         </Row>
       </div>
