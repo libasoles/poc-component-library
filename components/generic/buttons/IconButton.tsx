@@ -16,7 +16,7 @@ const IconButton = ({
         className
       )}
     >
-      {children}
+      <div className="w-6 h-6">{children}</div>
     </button>
   );
 };

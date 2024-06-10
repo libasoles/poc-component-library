@@ -1,13 +1,14 @@
 import { ComponentProps } from "react";
-import { twMerge } from "tailwind-merge";
 
 type Props = {
   size?: number;
 } & ComponentProps<"svg">;
 
-const EditIcon = ({ size = 6, className }: Props) => (
+const EditIcon = ({ className }: Props) => (
   <svg
-    className={twMerge(`w-${size} h-${size} `, className)}
+    className={className}
+    width="inherit"
+    height="inherit"
     fill="currentColor"
     stroke="currentColor"
     focusable="false"
