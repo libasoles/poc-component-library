@@ -2,7 +2,7 @@
 
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { useFetchPatients } from "api/useFetchPatients";
-import { useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import PatienList from "./PatientList";
 
 const estimateCardHeight = 200;
@@ -12,13 +12,22 @@ const PatientListScroller = () => {
 
   const { data, isLoading, isError } = useFetchPatients();
 
-  const patients = data?.sort((a, b) => b.createdAt.diff(a.createdAt));
+  const patients = useMemo(() => {
+    return data?.sort((a, b) => b.createdAt.diff(a.createdAt));
+  }, [data]);
+
+  const count = patients?.length || 0;
 
   const virtualizedList = useVirtualizer({
-    count: patients?.length || 0,
+    count,
     getScrollElement: () => listRef.current,
     estimateSize: (i) => estimateCardHeight,
   });
+
+  useEffect(() => {
+    // TODO: there's still an issue when deleting an expanded card
+    virtualizedList.measure();
+  }, [virtualizedList]);
 
   return (
     <div

@@ -18,9 +18,12 @@ export function useFetchPatients(): UseQueryResult<Patient[]> {
   return useQuery({
     queryKey: [PATIENTS],
     queryFn: fetchPatients,
-    select: (patients) => patients.map(mapPatient),
+    select: mapPatients,
   });
 }
+const mapPatients = (patients: DTO.Patient[]): Patient[] => {
+  return patients.map(mapPatient);
+};
 
 const mapPatient = (patient: DTO.Patient): Patient => ({
   ...patient,
