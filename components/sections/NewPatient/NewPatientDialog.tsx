@@ -1,6 +1,6 @@
 import Message from "@/components/generic/Message";
 import Dialog from "@/components/generic/popups/Dialog";
-import { useToastMessages } from "@/components/generic/popups/ToastContext";
+import { useToastMessages } from "@/components/generic/popups/toast/ToastContext";
 import { FormProvider } from "react-hook-form";
 import PatientForm from "../PatientForm";
 import { usePatientForm } from "./usePatientForm";
@@ -22,9 +22,6 @@ const NewPatientDialog = ({ closeDialog }: Props) => {
       onSuccess: () => {
         closeDialog();
         addMessage("Patient created successfully");
-      },
-      onError: () => {
-        addMessage("Error creating the patient");
       },
     });
 

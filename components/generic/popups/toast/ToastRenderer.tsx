@@ -1,7 +1,7 @@
 "use client";
 
-import Toast from "./toast/ToastMessage";
 import { useToastMessages } from "./ToastContext";
+import Toast from "./ToastMessage";
 
 const ToastRenderer = () => {
   const { messages } = useToastMessages();

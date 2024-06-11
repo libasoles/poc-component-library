@@ -1,6 +1,6 @@
 import Message from "@/components/generic/Message";
 import Dialog from "@/components/generic/popups/Dialog";
-import { useToastMessages } from "@/components/generic/popups/ToastContext";
+import { useToastMessages } from "@/components/generic/popups/toast/ToastContext";
 import { FormProvider } from "react-hook-form";
 import { Patient } from "types/Patient";
 import { usePatientForm } from "../NewPatient/usePatientForm";
@@ -32,9 +32,6 @@ const EditPatientDialog = ({ patient, closeDialog }: Props) => {
       onSuccess: () => {
         closeDialog();
         addMessage("Patient updated successfully");
-      },
-      onError: () => {
-        addMessage("Error updating the patient");
       },
     });
 

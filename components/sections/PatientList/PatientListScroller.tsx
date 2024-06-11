@@ -36,7 +36,7 @@ const PatientListScroller = () => {
       data-testid="virtual-list"
       className="mt-2 h-screen"
     >
-      <div
+      <section
         className="max-w-screen-md mx-auto"
         style={{
           width: "100%",
@@ -50,7 +50,7 @@ const PatientListScroller = () => {
           isError={isError}
           virtualizedList={virtualizedList}
         />
-      </div>
+      </section>
     </div>
   );
 };

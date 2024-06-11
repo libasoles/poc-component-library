@@ -41,6 +41,8 @@ export const useCreatePatient = ({
     onError: (error, variables, context) => {
       // Rollback the cache update on error
       queryClient.setQueryData([PATIENTS], context?.previouspatients);
+
+      handleError();
     },
     onSettled: (response, error, variables, context) => {
       queryClient.invalidateQueries({ queryKey: [PATIENTS] });

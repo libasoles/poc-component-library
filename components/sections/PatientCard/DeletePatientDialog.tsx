@@ -1,7 +1,7 @@
 import Label from "@/components/generic/forms/Label";
 import Column from "@/components/generic/layout/Column";
 import Dialog from "@/components/generic/popups/Dialog";
-import { useToastMessages } from "@/components/generic/popups/ToastContext";
+import { useToastMessages } from "@/components/generic/popups/toast/ToastContext";
 import Text from "@/components/generic/Text";
 import { useDeletePatient } from "api/useDeletePatient";
 import { Patient } from "types/Patient";

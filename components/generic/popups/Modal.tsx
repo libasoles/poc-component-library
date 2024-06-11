@@ -24,11 +24,8 @@ const Modal = ({
   children,
   ...props
 }: ModalProps) => {
-  if (typeof window === "undefined") return null;
-
-  if (!isOpen) {
-    return null;
-  }
+  const isClientSide = typeof window !== "undefined";
+  if (!isClientSide || !isOpen) return null;
 
   const content = (
     <Column

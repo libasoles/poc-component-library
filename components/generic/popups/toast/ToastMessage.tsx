@@ -1,6 +1,6 @@
 import Message from "@/components/generic/Message";
 import { useEffect } from "react";
-import { ToastMessage, useToastMessages } from "../ToastContext";
+import { ToastMessage, useToastMessages } from "./ToastContext";
 
 const height = 64;
 const marginBottom = 16;

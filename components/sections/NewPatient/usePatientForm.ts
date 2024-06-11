@@ -14,14 +14,14 @@ type usePatientForm = {
   patientId?: string;
   initialValues?: DTO.EditablePatient;
   onSuccess: () => void;
-  onError: () => void;
+  onError?: () => void;
 };
 
 export const usePatientForm = ({
   patientId,
   initialValues = defaultValues,
   onSuccess: handleSuccess,
-  onError: handleError,
+  onError: handleError = () => {},
 }: usePatientForm) => {
   const formRef = useRef<HTMLFormElement>(null);
   const form = useForm<DTO.EditablePatient>({

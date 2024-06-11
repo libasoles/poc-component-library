@@ -1,5 +1,5 @@
+import { Variant } from "@/components/generic/Message";
 import { createContext, PropsWithChildren, useContext, useState } from "react";
-import { Variant } from "../Message";
 
 const timeToLive = 3000;
 

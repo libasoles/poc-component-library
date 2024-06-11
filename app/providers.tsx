@@ -1,6 +1,6 @@
 "use client";
 
-import { ToastMessagesProvider } from "@/components/generic/popups/ToastContext";
+import { ToastMessagesProvider } from "@/components/generic/popups/toast/ToastContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { PropsWithChildren } from "react";

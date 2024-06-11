@@ -25,10 +25,12 @@ export const aListOfPatients = [
 export const aPatientWithLongDescription = createPatient({
   name: "Saul Goodman",
 });
+
 export const aPatientWithShortDescription = createPatient({
   name: "Saul Goodman",
   description: "Lorem ipsum dolor sit.",
 });
+
 export const aPatientWithoutDescription = createPatient({
   name: "Saul Goodman",
   description: "",

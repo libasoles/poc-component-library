@@ -1,4 +1,4 @@
-import ToastRenderer from "@/components/generic/popups/ToastRenderer";
+import ToastRenderer from "@/components/generic/popups/toast/ToastRenderer";
 import "@/styles/global.css";
 import { PropsWithChildren } from "react";
 import Providers from "./providers";
@@ -9,6 +9,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
       <body>
         <Providers>
           <main className="w-full pt-8 sm:my-16 px-2">{children}</main>
+
           <ToastRenderer />
         </Providers>
       </body>
