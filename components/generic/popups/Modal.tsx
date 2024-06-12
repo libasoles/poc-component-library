@@ -1,7 +1,7 @@
 "use client";
 
 import { CrossIcon } from "@/components/icons";
-import { ComponentProps } from "react";
+import { ComponentPropsWithoutRef } from "react";
 import { createPortal } from "react-dom";
 import { twMerge } from "tailwind-merge";
 import IconButton from "../buttons/IconButton";
@@ -13,7 +13,7 @@ export type ModalProps = {
   isOpen: boolean;
   fullscreen?: boolean;
   onClose: () => void;
-} & ComponentProps<"div">;
+} & ComponentPropsWithoutRef<"div">;
 
 const Modal = ({
   title,

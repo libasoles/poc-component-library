@@ -1,7 +1,11 @@
-import { ComponentProps } from "react";
+import { ComponentPropsWithoutRef } from "react";
 import { twMerge } from "tailwind-merge";
 
-const Row = ({ children, className, ...props }: ComponentProps<"div">) => {
+const Row = ({
+  children,
+  className,
+  ...props
+}: ComponentPropsWithoutRef<"div">) => {
   return (
     <div
       {...props}

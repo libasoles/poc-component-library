@@ -1,8 +1,8 @@
-import { ComponentProps } from "react";
+import { ComponentPropsWithoutRef } from "react";
 
 type Props = {
   size?: number;
-} & ComponentProps<"svg">;
+} & ComponentPropsWithoutRef<"svg">;
 
 const EditIcon = ({ className }: Props) => (
   <svg

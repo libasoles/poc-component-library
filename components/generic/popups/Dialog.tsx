@@ -7,9 +7,15 @@ import Modal, { ModalProps } from "./Modal";
 
 type Props = {
   onConfirm: () => void;
+  isConfirmDisabled?: boolean;
 } & ModalProps;
 
-const Dialog = ({ onConfirm, children, ...props }: Props) => {
+const Dialog = ({
+  onConfirm,
+  isConfirmDisabled = false,
+  children,
+  ...props
+}: Props) => {
   return (
     <Modal {...props}>
       <Column className="justify-between h-full">
@@ -19,7 +25,11 @@ const Dialog = ({ onConfirm, children, ...props }: Props) => {
           <Button onClick={props.onClose} variant="text">
             Cancel
           </Button>
-          <Button onClick={onConfirm} variant="text">
+          <Button
+            onClick={onConfirm}
+            variant="text"
+            disabled={isConfirmDisabled}
+          >
             Ok
           </Button>
         </ActionBar>

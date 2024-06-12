@@ -1,8 +1,8 @@
-import { ComponentProps } from "react";
+import { ComponentPropsWithoutRef } from "react";
 
 type Props = {
   size?: number;
-} & ComponentProps<"svg">;
+} & ComponentPropsWithoutRef<"svg">;
 
 const DeleteIcon = ({ className }: Props) => (
   <svg

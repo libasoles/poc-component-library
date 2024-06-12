@@ -22,7 +22,7 @@ export function useFetchPatients(): UseQueryResult<Patient[]> {
   });
 }
 const mapPatients = (patients: DTO.Patient[]): Patient[] => {
-  return patients.map(mapPatient);
+  return patients.map(mapPatient).sort((a, b) => b.createdAt.diff(a.createdAt));
 };
 
 const mapPatient = (patient: DTO.Patient): Patient => ({

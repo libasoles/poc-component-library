@@ -26,6 +26,7 @@ export const usePatientForm = ({
   const formRef = useRef<HTMLFormElement>(null);
   const form = useForm<DTO.EditablePatient>({
     defaultValues: initialValues,
+    mode: "all",
   });
 
   const useMutation = patientId ? useUpdatePatient : useCreatePatient;

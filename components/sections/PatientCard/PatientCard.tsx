@@ -17,11 +17,13 @@ type Props = {
 
 const PatientCard = ({ patient }: Props) => {
   const shouldHaveShowMoreFeature =
-    patient.description.length > 100 || patient.website.length > 0;
+    patient.description.length > 85 || patient.website.length > 0;
 
   const [showMore, setShowMore] = useState(false);
 
-  const startDate = patient.createdAt.format(config.dates.longDateFormat);
+  const registrationDate = patient.createdAt.format(
+    config.dates.longDateFormat
+  );
 
   return (
     <Card>
@@ -34,7 +36,7 @@ const PatientCard = ({ patient }: Props) => {
               <h3 className="font-bold text-xl mb-1">{patient.name}</h3>
               <Row className="gap-2">
                 <Label>Registration date:</Label>
-                <span className="text-neutral-300">{startDate}</span>
+                <span className="text-neutral-300">{registrationDate}</span>
               </Row>
             </Column>
           </Row>

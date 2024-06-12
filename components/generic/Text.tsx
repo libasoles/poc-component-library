@@ -1,7 +1,11 @@
-import { ComponentProps } from "react";
+import { ComponentPropsWithoutRef } from "react";
 import { twMerge } from "tailwind-merge";
 
-const Text = ({ children, className, ...props }: ComponentProps<"p">) => {
+const Text = ({
+  children,
+  className,
+  ...props
+}: ComponentPropsWithoutRef<"p">) => {
   return (
     <p className={twMerge(`text-md text-gray-300`, className)} {...props}>
       {children}

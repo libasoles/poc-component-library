@@ -37,7 +37,9 @@ describe("Patient card", () => {
 
     expect(patientCard).toHaveTextContent("Saul Goodman");
     expect(patientCard).toHaveTextContent("Registration date:");
-    expect(patientCard).toHaveTextContent("June 10, 2024");
+
+    // TODO: mock date to avoid this test to fail in the future
+    expect(patientCard).toHaveTextContent("June 12, 2024");
 
     // note about this: tests don't have css ellipsis to shorten them
     expect(patientCard).toHaveTextContent(

@@ -5,7 +5,7 @@ export type Variant = "error" | "info";
 type Props = {
   content: string;
   variant?: Variant;
-} & React.ComponentProps<"div">;
+} & React.ComponentPropsWithoutRef<"div">;
 
 const Message = ({ content, variant, className }: Props) => {
   const color = variant === "error" ? "bg-red-900" : "bg-blue-900";

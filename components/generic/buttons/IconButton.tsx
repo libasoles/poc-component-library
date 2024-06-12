@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { ComponentPropsWithoutRef } from "react";
 import { twMerge } from "tailwind-merge";
 
 const IconButton = ({
@@ -6,7 +6,7 @@ const IconButton = ({
   className,
   onClick: handleClick,
   ...props
-}: ComponentProps<"button">) => {
+}: ComponentPropsWithoutRef<"button">) => {
   return (
     <button
       onClick={handleClick}

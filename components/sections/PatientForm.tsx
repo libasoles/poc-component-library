@@ -40,7 +40,12 @@ const PatientForm = (
           id="website"
           label="Website"
           placeholder="Url"
-          {...register("website")}
+          {...register("website", {
+            pattern: {
+              value: /^https?:\/\/.*/,
+              message: "Must be a valid url",
+            },
+          })}
           error={errors?.website?.message as string}
         />
       </Row>

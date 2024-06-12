@@ -1,7 +1,7 @@
-import { ComponentProps, forwardRef, Ref } from "react";
+import { ComponentPropsWithRef, forwardRef, Ref } from "react";
 import Field, { FieldProps } from "./Field";
 
-type TextFieldProps = FieldProps & ComponentProps<"input">;
+type TextFieldProps = FieldProps & ComponentPropsWithRef<"input">;
 
 const TextField = (props: TextFieldProps, ref: Ref<HTMLInputElement>) => {
   return (

@@ -1,8 +1,11 @@
-import { ComponentProps } from "react";
+import { ComponentPropsWithoutRef } from "react";
 import { twMerge } from "tailwind-merge";
 import Row from "./layout/Row";
 
-const ActionBar = ({ className, children }: ComponentProps<"div">) => {
+const ActionBar = ({
+  className,
+  children,
+}: ComponentPropsWithoutRef<"div">) => {
   return (
     <Row
       className={twMerge(

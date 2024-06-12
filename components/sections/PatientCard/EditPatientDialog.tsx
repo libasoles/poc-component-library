@@ -44,12 +44,15 @@ const EditPatientDialog = ({ patient, closeDialog }: Props) => {
     closeDialog();
   };
 
+  const isConfirmDisabled = !form.formState.isValid;
+
   return (
     <>
       <Dialog
         isOpen
         onClose={handleClose}
         onConfirm={handleConfirm}
+        isConfirmDisabled={isConfirmDisabled}
         title="Edit patient"
         fullscreen
       >

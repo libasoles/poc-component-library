@@ -2,7 +2,7 @@
 
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { useFetchPatients } from "api/useFetchPatients";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 import PatienList from "./PatientList";
 
 const estimateCardHeight = 200;
@@ -10,11 +10,7 @@ const estimateCardHeight = 200;
 const PatientListScroller = () => {
   const listRef = useRef<HTMLDivElement | null>(null);
 
-  const { data, isLoading, isError } = useFetchPatients();
-
-  const patients = useMemo(() => {
-    return data?.sort((a, b) => b.createdAt.diff(a.createdAt));
-  }, [data]);
+  const { data: patients, isLoading, isError } = useFetchPatients();
 
   const count = patients?.length || 0;
 
